@@ -205,10 +205,8 @@
 <ol class="arabic">
 <li>
 <p>Define a component using the type <code>container</code>.</p>
-<div class="exampleblock">
-<div class="title">Example 1. A <code>container</code> component</div>
-<div class="content">
 <div class="listingblock">
+<div class="title">A <code>container</code> component</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"> components:
    - name: maven
@@ -234,12 +232,8 @@
        args: ['-f', '/dev/null']</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. A minimal <code>container</code> component*</div>
-<div class="content">
 <div class="listingblock">
+<div class="title">A minimal <code>container</code> component*</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
@@ -250,8 +244,6 @@ components:
       image: golang
       memoryLimit: 512Mi
       command: ['sleep', 'infinity']</code></pre>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -266,8 +258,6 @@ components:
 <div class="paragraph">
 <p>For the <code>container</code> component to have access to the project sources, you must set the <code>mountSources</code> attribute to <code>true</code>.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
@@ -282,10 +272,8 @@ components:
       command: ['sleep', 'infinity']</code></pre>
 </div>
 </div>
-</div>
-</div>
 <div class="paragraph">
-<p>The sources is mounted on a location stored in the <code>CHE_PROJECTS_ROOT</code> environment variable that is made available in the running container of the image. This location defaults to <code>/projects</code>. If <code>sourceMapping</code> is defined in the container, it overrides the 'CHE_PROJECT_ROOT' value if present and mounts the source to the path defined by <code>sourceMapping</code>.</p>
+<p>The sources is mounted on a location stored in the <code>PROJECTS_ROOT</code> environment variable that is made available in the running container of the image. This location defaults to <code>/projects</code>. If <code>sourceMapping</code> is defined in the container, it overrides the 'PROJECT_ROOT' value if present and mounts the source to the path defined by <code>sourceMapping</code>.</p>
 </div>
 </li>
 <li>

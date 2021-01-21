@@ -198,31 +198,23 @@
 <ol class="arabic">
 <li>
 <p>To specify a static name for the workspace, define the <code>name</code> attribute.</p>
-<div class="exampleblock">
-<div class="title">Example 1. Adding a static name to a devfile</div>
-<div class="content">
 <div class="listingblock">
+<div class="title">Adding a static name to a devfile</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
   name: devfile-sample</code></pre>
 </div>
 </div>
-</div>
-</div>
 </li>
 <li>
-<p>To specify a prefix for automatically generated workspace names, define the <code>generateName</code> attribute and don&#8217;t define the <code>name</code> attribute. The workspace name will be in the <code>&lt;generateName&gt;YYYYY</code> format (for example, <code>che-2y7kp</code>). <code>Y</code> is random <code>[a-z0-9]</code> character.</p>
-<div class="exampleblock">
-<div class="title">Example 2. Adding a generated name to a devfile</div>
-<div class="content">
+<p>To specify a prefix for automatically generated workspace names, define the <code>generateName</code> attribute and don&#8217;t define the <code>name</code> attribute. The workspace name will be in the <code>&lt;generateName&gt;YYYYY</code> format (for example, <code>devfile-sample-2y7kp</code>). <code>Y</code> is random <code>[a-z0-9]</code> character.</p>
 <div class="listingblock">
+<div class="title">Adding a generated name to a devfile</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  generateName: che-</code></pre>
-</div>
-</div>
+  generateName: devfile-sample-</code></pre>
 </div>
 </div>
 </li>
@@ -235,9 +227,7 @@ metadata:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>For workspaces created using a factory, defining <code>name</code> or <code>generateName</code> has the same effect. The defined value is used as the name prefix: <code>&lt;name&gt;YYYYY</code> or <code>&lt;generateName&gt;YYYYY</code>. When both <code>generateName</code> and <code>name</code> are defined, <code>generateName</code> takes precedence.</p>
-</div>
+For workspaces created using a factory, defining <code>name</code> or <code>generateName</code> has the same effect. The defined value is used as the name prefix: <code>&lt;name&gt;YYYYY</code> or <code>&lt;generateName&gt;YYYYY</code>. When both <code>generateName</code> and <code>name</code> are defined, <code>generateName</code> takes precedence.
 </td>
 </tr>
 </table>

@@ -199,7 +199,7 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
    - name: exec-plugin
      plugin:
-      id: eclipse/che-machine-exec-plugin/0.0.1
+      id: eclipse/machine-exec-plugin/0.0.1
       memoryLimit: 1Gi
    -   name: maven
      container:
@@ -215,9 +215,6 @@
 <div class="paragraph">
 <p>For <code>plugin</code> components, RAM limits can be described in the plug-in descriptor file, typically named <code>meta.yaml</code>.</p>
 </div>
-<div class="paragraph">
-<p>If none of them are specified, system-wide defaults will be applied (see description of <code>CHE_WORKSPACE_SIDECAR_DEFAULT__MEMORY__LIMIT__MB</code> system property).</p>
-</div>
 </li>
 <li>
 <p>Specify container memory request for components</p>
@@ -232,7 +229,7 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
    - name: exec-plugin
      plugin:
-      id: eclipse/che-machine-exec-plugin/0.0.1
+      id: eclipse/machine-exec-plugin/0.0.1
       memoryLimit: 1Gi
       memoryRequest: 512M
    - name: maven
@@ -251,7 +248,7 @@
 <p>For <code>plugin</code> components, RAM requests can be described in the plug-in descriptor file, typically named <code>meta.yaml</code>.</p>
 </div>
 <div class="paragraph">
-<p>If none of them are specified, system-wide defaults are applied (see description of <code>CHE_WORKSPACE_SIDECAR_DEFAULT__MEMORY__REQUEST__MB</code> system property).</p>
+<p>If they are not specified, the values are undetermined: they may or may not be inferred from the application that consumes the devfile or from Kubernetes.</p>
 </div>
 </li>
 <li>
@@ -267,7 +264,7 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
    - name: exec-plugin
      plugin:
-       id: eclipse/che-machine-exec-plugin/0.0.1
+       id: eclipse/machine-exec-plugin/0.0.1
        cpuLimit: 1.5
    - name: maven
      container:
@@ -284,7 +281,7 @@
 <p>For the <code>plugin</code> components, CPU limits can be described in the plug-in descriptor file, typically named <code>meta.yaml</code>.</p>
 </div>
 <div class="paragraph">
-<p>If none of them are specified, system-wide defaults are applied (see description of <code>CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__LIMIT__CORES</code> system property).</p>
+<p>If they are not specified, the values are undetermined: they may or may not be inferred from the application that consumes the devfile or from Kubernetes.</p>
 </div>
 </li>
 <li>
@@ -300,7 +297,7 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
    - name: exec-plugin
      plugin:
-      id: eclipse/che-machine-exec-plugin/0.0.1
+      id: eclipse/machine-exec-plugin/0.0.1
       cpuLimit: 1.5
       cpuRequest: 0.225
    - name: maven
@@ -316,10 +313,10 @@
 <p>This limit will be applied to every container of the given component.</p>
 </div>
 <div class="paragraph">
-<p>For the <code>pugin</code> component type, CPU requests can be described in the plug-in descriptor file, typically named <code>meta.yaml</code>.</p>
+<p>For the <code>plugin</code> component type, CPU requests can be described in the plug-in descriptor file, typically named <code>meta.yaml</code>.</p>
 </div>
 <div class="paragraph">
-<p>If none of them are specified, system-wide defaults are applied (see description of <code>CHE_WORKSPACE_SIDECAR_DEFAULT__CPU__REQUEST__CORES</code> system property).</p>
+<p>If they are not specified, the values are undetermined: they may or may not be inferred from the application that consumes the devfile or from Kubernetes.</p>
 </div>
 </li>
 </ol>
