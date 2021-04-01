@@ -223,7 +223,7 @@
 metadata:
   name: my-project-dev
 parent:
-    id: redhat/nodejs/11.6
+    id: redhat/nodejs
     registry: https://devfile-registry.io/</code></pre>
 </div>
 </div>
@@ -241,7 +241,6 @@ parent:
 metadata:
   name: my-project-dev
 parent:
-    id: redhat/nodejs/11.6
     uri: https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/nodejs/devfile.yaml</code></pre>
 </div>
 </div>
@@ -251,7 +250,7 @@ parent:
 <div class="title">Example 3. Parent identified by a Kubernetes resource</div>
 <div class="content">
 <div class="paragraph">
-<p>Using a Kubernetes resource name, namespace and selector if it has been deployed on a Kubernete cluster.</p>
+<p>Using a Kubernetes resource name and namespace if it has been deployed on a Kubernete cluster.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -261,8 +260,7 @@ metadata:
 parent:
     kubernetes:
         name: mydevworkspacetemplate
-        namespace: mynamespace
-        selector: mykey=myvalue</code></pre>
+        namespace: mynamespace</code></pre>
 </div>
 </div>
 </div>

@@ -193,7 +193,7 @@
 <article class="doc">
 <h1 class="page">Adding attributes to a devfile</h1>
 <div class="paragraph _abstract">
-<p>Devfile attributes can be used to configure various features.</p>
+<p>Devfile attributes can be used to configure various features and properties according to user and tooling needs. Attributes are implementation-dependant, free-form YAML and can be defined for the following devfile objects: <code>metadata</code>, <code>components</code>, <code>commands</code>, <code>projects</code>, and <code>starterProjects</code>.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -210,9 +210,9 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Define the optional <code>editorFree</code> attribute</p>
+<p>Define a custom attribute</p>
 <div class="paragraph">
-<p>When an editor is not specified in a devfile, a default is provided. When no editor is needed, use the <code>editorFree</code> attribute. The default value of <code>false</code> means that the devfile requests the provisioning of the default editor.</p>
+<p>When no editor is specified, a default editor is provided. To represent this user-defined example, use the <code>editorFree</code> attribute as shown in the following example:</p>
 </div>
 <div class="exampleblock">
 <div class="title">Example 1. A devfile without an editor</div>
@@ -222,37 +222,12 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
   name: petclinic-dev-environment
+  attributes:
+     editorFree: true
 components:
-  - name: myApp
+  - name: myapp
     kubernetes:
-      local: my-app.yaml
-attributes:
-  editorFree: true</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Define the optional <code>persistVolumes</code> attribute (ephemeral mode)</p>
-<div class="paragraph">
-<p>By default, volumes and PVCs specified in a devfile are bound to a host folder to persist data even after a container restart. To disable data persistence to make the workspace faster, such as when the volume back end is slow, modify the <code>persistVolumes</code> attribute in the devfile. The default value is <code>true</code>. Set to <code>false</code> to use <code>emptyDir</code> for configured volumes and PVC.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. A devfile with ephemeral mode enabled</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
-metadata:
-  name: petclinic-dev-environment
-projects:
-  - name: petclinic
-    git:
-      remotes:
-        origin: "https://github.com/che-samples/web-java-spring-petclinic.git"
-attributes:
-  persistVolumes: false</code></pre>
+      uri: my-app.yaml</code></pre>
 </div>
 </div>
 </div>
