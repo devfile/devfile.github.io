@@ -199,7 +199,7 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Component is a polymophic type</p>
+<p>Component is a polymorphic type</p>
 <div class="paragraph">
 <p>For a better syntax validation component now is defined as a polymorphic type and can be implemented as <code>container</code>, <code>kubernetes</code>, <code>openshift</code>, <code>plugin</code> or <code>volume</code>.</p>
 </div>
@@ -208,6 +208,7 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
 ---
 components:
+  - name: mydevfile
   - container:
         image: maven
         ...
@@ -215,33 +216,33 @@ components:
         image: nodejs
         ...
   - kubernetes:
-       reference: https://.../mongo.yaml</code></pre>
+       uri: https://.../mongo.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See <a href="https://github.com/che-incubator/devworkspace-api/issues/4">corresponding issue</a>.</p>
+<p>See <a href="https://github.com/devfile/api/issues/4">corresponding issue</a>.</p>
 </div>
 </li>
 <li>
-<p>Shared Volumes Across Components. See <a href="https://github.com/che-incubator/devworkspace-api/issues/19">corresponding issue</a>.</p>
+<p>Shared Volumes Across Components. See <a href="https://github.com/devfile/api/issues/19">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Out of Main Pod Compoenents. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
+<p>Out of Main Pod Components. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Replace Alias with Name. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/9">corresponding issue</a>.</p>
+<p>Replace Alias with Name. See  <a href="https://github.com/devfile/api/issues/9">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Renaming dockerimage component type. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/8">corresponding issue</a>.</p>
+<p>Renaming dockerimage component type. See  <a href="https://github.com/devfile/api/issues/8">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Specify sources path for containers. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/17">corresponding issue</a>.</p>
+<p>Specify sources path for containers. See  <a href="https://github.com/devfile/api/issues/17">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Specify size of volume for component. See <a href="https://github.com/che-incubator/devworkspace-api/issues/14">corresponding issue</a>.</p>
+<p>Specify size of volume for component. See <a href="https://github.com/devfile/api/issues/14">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/che-incubator/devworkspace-api/issues/33">corresponding issue</a>.</p>
+<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/devfile/api/issues/33">corresponding issue</a>.</p>
 </li>
 </ol>
 </div>
@@ -249,28 +250,28 @@ components:
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p>Component is a polymophic type. See <a href="https://github.com/che-incubator/devworkspace-api/issues/4">corresponding issue</a>.</p>
+<p>Component is a polymorphic type. See <a href="https://github.com/devfile/api/issues/4">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Shared Volumes Across Components. See <a href="https://github.com/che-incubator/devworkspace-api/issues/19">corresponding issue</a>.</p>
+<p>Shared Volumes Across Components. See <a href="https://github.com/devfile/api/issues/19">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Out of Main Pod Compoenents. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
+<p>Out of Main Pod Components. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Replace Alias with Name. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/9">corresponding issue</a>.</p>
+<p>Replace Alias with Name. See  <a href="https://github.com/devfile/api/issues/9">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Renaming dockerimage component type. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/8">corresponding issue</a>.</p>
+<p>Renaming dockerimage component type. See  <a href="https://github.com/devfile/api/issues/8">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Specify sources path for containers. See  <a href="https://github.com/che-incubator/devworkspace-api/issues/17">corresponding issue</a>.</p>
+<p>Specify sources path for containers. See  <a href="https://github.com/devfile/api/issues/17">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Specify size of volume for component. See <a href="https://github.com/che-incubator/devworkspace-api/issues/14">corresponding issue</a>.</p>
+<p>Specify size of volume for component. See <a href="https://github.com/devfile/api/issues/14">corresponding issue</a>.</p>
 </li>
 <li>
-<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/che-incubator/devworkspace-api/issues/33">corresponding issue</a>.</p>
+<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/devfile/api/issues/27">corresponding issue</a>.</p>
 </li>
 </ul>
 </div>

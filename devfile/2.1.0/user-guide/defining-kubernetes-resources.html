@@ -228,7 +228,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 projects:
   - name: my-go-project
     clonePath: go/src/github.com/acme/my-go-project
@@ -236,9 +236,9 @@ projects:
       remotes:
         origin: "https://github.com/acme/my-go-project.git"
 components:
-  - name: MyDevfile
+  - name: mydevfile
     kubernetes:
-      reference: ../relative/path/postgres.yaml</code></pre>
+      uri: ../relative/path/postgres.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -291,8 +291,6 @@ items:
         ports:
             - port: 5432
               targetPort: 5432
-        selector:
-            app: postgres
 -
     apiVersion: v1
     kind: PersistentVolumeClaim
@@ -310,31 +308,6 @@ items:
 </div>
 <div class="paragraph">
 <p>For a basic example of a devfile with an associated Kubernetes or OpenShift list, see <a href="https://github.com/redhat-developer/devfile/tree/master/samples/web-nodejs-with-db-sample">web-nodejs-with-db-sample</a> on redhat-developer GitHub.</p>
-</div>
-<div class="paragraph">
-<p>If you use generic or large resource lists from which you will only need a subset of resources, you can select particular resources from the list using a selector (which, as the usual Kubernetes selectors, works on the labels of the resources in the list).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
-metadata:
-  name: MyDevfile
-projects:
-  - name: my-go-project
-    clonePath: go/src/github.com/acme/my-go-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-go-project.git"
-components:
-  - name: MyDevfile
-    kubernetes:
-      reference: ../relative/path/postgres.yaml
-      selector:
-        app: postgres</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Additionally, it is also possible to modify the entrypoints (command and arguments) of the containers present in the resource list. For details of the advanced use case, see the reference (TODO: link).</p>
 </div>
 </article>
   </div>
