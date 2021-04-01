@@ -219,7 +219,7 @@
 <p>For each command, define an unique value for the mandatory <code>id</code> attribute.</p>
 </li>
 <li>
-<p>For each command, define a mandatory type of one of the following types: <code>exec</code> or <code>vscode-tasks</code>.</p>
+<p>For each command, define a mandatory type of one of the following types: <code>exec</code>, <code>apply</code>, <code>composite</code>, or <code>vscode-tasks</code>.</p>
 <div class="listingblock">
 <div class="title">Sample command</div>
 <div class="content">
@@ -248,7 +248,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 projects:
   - name: my-go-project
     clonePath: go/src/github.com/acme/my-go-project
@@ -272,62 +272,17 @@ commands:
     exec:
       component: go-cli
       commandLine: "go get -d &amp;&amp; go run main.go"
-      workingDir: "${PROJECTS_ROOT}/src/github.com/acme/my-go-project"
-      runAsUser: root</code></pre>
+      workingDir: "${PROJECTS_ROOT}/src/github.com/acme/my-go-project"</code></pre>
 </div>
 </div>
 <div class="ulist NOTE">
 <ul class="NOTE">
-<li>
-<p>Any component on which commands are executed must define a <code>name</code> attribute. This name is used to reference the component in the command definition. Example: <code>name: go-cli</code> in the component definition and <code>component: go-cli</code> in the command definition.</p>
-</li>
 <li>
 <p>A command can have only one action, though you can use <code>composite</code> commands to execute several commands either sequentially or in parallel.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>Define attributes for the <code>vscode-task</code> or <code>vscode-launch</code> command to run using the Editor.</p>
-<div class="paragraph">
-<p>If the editor in the workspace supports it, the devfile can specify additional configuration in the editor-specific format. This is dependent on the integration code present in the workspace editor itself and so is not a generic mechanism.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
-metadata:
-  name: MyDevfile
-projects:
-  - name: my-go-project
-    clonePath: go/src/github.com/acme/my-go-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-go-project.git"
-commands:
-  - id: task
-    vscode-task:
-      name: tasks
-      referenceContent: &gt;
-          {
-              "version": "2.0.0",
-              "tasks": [
-                  {
-                      "label": "create test file",
-                      "type": "shell",
-                      "command": "touch ${workspaceFolder}/test.file"
-                  }
-              ]
-          }</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>This example shows association of a <code>tasks.json</code> file with a devfile. Notice the <code>vscode-task</code> type that instructs the editor to interpret this command as a tasks definition and <code>referenceContent</code> attribute that contains the contents of the file itself. You can also save this file separately from the devfile and use <code>reference</code> attribute to specify a relative or absolute URL to it.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
 <li>
 <p>Command group</p>
 <div class="paragraph">
@@ -337,7 +292,7 @@ commands:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 projects:
   - name: my-maven-project
     clonePath: maven/src/github.com/acme/my-maven-project
@@ -376,7 +331,7 @@ commands:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 projects:
   - name: my-maven-project
     clonePath: maven/src/github.com/acme/my-maven-project
@@ -403,7 +358,7 @@ commands:
       group:
         kind: build
         isDefault: true
-  - id: installAndPackage
+  - id: installandpackage
     composite:
       commands:
         - install
@@ -412,41 +367,7 @@ commands:
 </div>
 </div>
 </li>
-<li>
-<p>Command preview URL</p>
-<div class="paragraph">
-<p>It is possible to specify a preview URL for commands that expose web UI. This URL is offered for opening when the command is executed.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">commands:
-    - id: tasks
-      exec:
-        previewUrl:
-          port: 8080     <i class="conum" data-value="1"></i><b>(1)</b>
-          path: /myweb   <i class="conum" data-value="2"></i><b>(2)</b>
-        component: go-cli
-        commandLine: "go run webserver.go"
-        workingDir: ${PROJECTS_ROOT}/webserver</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>TCP port where the application listens. Mandatory parameter.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The path part of the URL to the UI. Optional parameter. The default is root (<code>/</code>).</td>
-</tr>
-</table>
-</div>
-</li>
 </ol>
-</div>
-<div class="paragraph">
-<p>The example above opens <code>http://__&lt;server-domain&gt;__/myweb</code>, where <code><em>&lt;server-domain&gt;</em></code> is the URL to the dynamically created Kubernetes Ingress or OpenShift Route.</p>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>

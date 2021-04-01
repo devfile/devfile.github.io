@@ -202,13 +202,13 @@
 <li>
 <p>Specify endpoints properties as shown in the following example:</p>
 <div class="exampleblock">
-<div class="title">Example 1. Specify endpoints properties</div>
+<div class="title">Example 1. Specifying endpoint properties</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 projects:
   - name: my-go-project
     clonePath: go/src/github.com/acme/my-go-project
@@ -223,35 +223,29 @@ components:
       mountSources: true
       command: ['sleep', 'infinity']
       env:
-        - name: GOPATH
+        - name: gopath
           value: $(PROJECTS_ROOT)/go
-        - name: GOCACHE
+        - name: gocache
           value: /tmp/go-cache
       endpoints:
       - name: web
         targetPort: 8080
-        configuration:
-          discoverable: false
-          public: true
-          protocol: tcp
-          scheme: http
+        exposure: public
   - name: postgres
     container:
       image: postgres
       memoryLimit: 512Mi
       env:
-        - name: POSTGRES_USER
+        - name: postgres_user
           value: user
-        - name: POSTGRES_PASSWORD
+        - name: postgres_password
           value: password
-        - name: POSTGRES_DB
+        - name: postgres_db
           value: database
       endpoints:
         - name: postgres
           targetPort: 5432
-          configuration:
-            discoverable: true
-            public: false</code></pre>
+          exposure: none</code></pre>
 </div>
 </div>
 </div>
@@ -260,21 +254,18 @@ components:
 </ol>
 </div>
 <div class="paragraph">
-<p>Here, there are two container, each defining a single endpoint. Endpoint is an accessible port that can be made accessible inside the workspace or publicly (example, from the UI). Each endpoint has a name and port, which is the port on which certain server running inside the container is listening. The following are a few attributes that you can set on the endpoint:</p>
+<p>Here, there are two container, each defining a single endpoint. Endpoint is an accessible port that can be made accessible inside the workspace or publicly from the UI. Each endpoint has a name and port, which is the port on which certain server running inside the container is listening. The following are a few attributes that you can set on the endpoint:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>discoverable</code>: If an endpoint is discoverable, it means that it can be accessed using its name as the host name within the workspace containers (in the Kubernetes parlance, a Service is created for it with the provided name).</p>
+<p><code>exposure</code>: When its value is <code>public</code>, the endpoint is accessible outside the workspace. Users can access such an endpoint from the Devfile user interface and is always exposed on port <code>80</code> or <code>443</code> depending on whether TLS is enabled in Devfile.</p>
 </li>
 <li>
-<p><code>public</code>: The endpoint will also be accessible outside of the workspace: such endpoint can be accessed from the Devfile user interface and is always exposed on port <code>80</code> or <code>443</code> (depending on whether <code>tls</code> is enabled in Devfile).</p>
+<p><code>protocol</code>: For public endpoints, the protocol is a hint to the UI on how to construct the URL for the endpoint access. Typical values are <code>http</code>, <code>https</code>, <code>ws</code>, <code>wss</code>.</p>
 </li>
 <li>
-<p><code>protocol</code>: For public endpoints the protocol is a hint to the UI on how to construct the URL for the endpoint access. Typical values are <code>http</code>, <code>https</code>, <code>ws</code>, <code>wss</code>.</p>
-</li>
-<li>
-<p><code>secure</code>: A boolean (defaulting to <code>false</code>) specifying whether the endpoint is put behind a JWT proxy requiring a JWT workspace token to grant access. The JWT proxy is deployed in the same Pod as the server and assumes the server listens solely on the local loopback interface, such as <code>127.0.0.1</code>.</p>
+<p><code>secure</code>: A boolean defaulting to <code>false</code> that specifies whether the endpoint is put behind a JWT proxy requiring a JWT workspace token to grant access. The JWT proxy is deployed in the same Pod as the server and assumes the server listens solely on the local loopback interface, such as <code>127.0.0.1</code>.</p>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -291,85 +282,39 @@ Listening on any other interface than the local loopback poses a security risk b
 <li>
 <p><code>path</code>: The URL of the endpoint.</p>
 </li>
-<li>
-<p><code>unsecuredPaths</code>: A comma-separated list of endpoint paths that are to stay unsecured even if the <code>secure</code> attribute is set to <code>true</code>.</p>
-</li>
-<li>
-<p><code>cookiesAuthEnabled</code>: When set to <code>true</code> (the default is <code>false</code>), the JWT workspace token is automatically fetched and included in a workspace-specific cookie to allow requests to pass through the JWT proxy.</p>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-This setting potentially allows a <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF</a> attack when used in conjunction with a server using POST requests.
-</td>
-</tr>
-</table>
-</div>
-</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>When starting a new server within a component, Devfile autodetects this, and the UI offers to automatically expose this port as a <code>public</code> port. This is useful for debugging a web application, for example. It is impossible to do this for servers that autostart with the container (for example, a database server). For such components, specify the endpoints explicitly.</p>
-</div>
-<div class="paragraph">
-<p>Example specifying endpoints for <code>kubernetes</code>/<code>openshift</code> and <code>plugin</code> types:</p>
+<p>When starting a new server within a component, Devfile autodetects this, and the UI offers to automatically expose this port as an <code>exposure</code> port. This exposure is useful for debugging a web application. It is impossible to do this for servers that autostart with the container, for example, a database server. For such components, specify the endpoints explicitly.</p>
 </div>
 <div class="listingblock">
+<div class="title">Specifying endpoints for <code>kubernetes</code> or <code>openshift</code> types:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 components:
   - name: theia-editor
-    plugin:
-      id: eclipse/che-theia/next
       endpoints:
       - name: 'theia-extra-endpoint'
         targetPort: 8880
-        configuration:
-          discoverable: true
-          public: true
-
-  - plugin:
-      id: redhat/php/latest
-      memoryLimit: 1Gi
-      endpoints:
-      - name: 'php-endpoint'
-        targetPort: 7777
-
-  - plugin:
-      name: theia-editor
-      id: eclipse/che-theia/next
-      endpoints:
-      - name: 'theia-extra-endpoint'
-        targetPort: 8880
-        configuration:
-          discoverable: true
-          public: true
+        exposure: public
 
   - openshift:
       name: webapp
-      reference: webapp.yaml
+      uri: webapp.yaml
       endpoints:
       - name: 'web'
         targetPort: 8080
-        configuration:
-          discoverable: false
-          public: true
-          protocol: http
+        exposure: public
 
   - openshift:
       name: mongo
-      reference: mongo-db.yaml
+      uri: mongo-db.yaml
       endpoints:
       - name: 'mongo-db'
         targetPort: 27017
-        configuration:
-          discoverable: true
-          public: false</code></pre>
+        exposure: public</code></pre>
 </div>
 </div>
 </article>

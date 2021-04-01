@@ -222,8 +222,10 @@ metadata:
 projects:
   - name: petclinic
     git:
-      location: 'https://github.com/spring-projects/spring-petclinic.git'
-      branch: master</code></pre>
+      remotes:
+        origin: "https://github.com/spring-projects/spring-petclinic.git"
+      checkoutFrom:
+        revision: master</code></pre>
 </div>
 </div>
 </div>
@@ -239,10 +241,12 @@ metadata:
 projects:
 - name: frontend
   git:
-    location: https://github.com/acmecorp/frontend.git
+    remotes:
+      origin: "https://github.com/acmecorp/frontend.git"
 - name: backend
   git:
-    location: https://github.com/acmecorp/backend.git</code></pre>
+    remotes:
+      origin: "https://github.com/acmecorp/backend.git"</code></pre>
 </div>
 </div>
 </div>
@@ -252,12 +256,12 @@ projects:
 <p>For each project, define an unique value for the mandatory <code>name</code> attribute.</p>
 </li>
 <li>
-<p>For each project, define a mandatory source of one of the following types: <code>git</code>, <code>github</code> and <code>zip</code>.</p>
+<p>For each project, define a mandatory source of either the <code>git</code> or <code>zip</code> type.</p>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><code>git</code></dt>
 <dd>
-<p>Projects with sources in Git. The location points to a clone link.</p>
+<p>Projects with sources in Git. <code>checkoutFrom</code> refers to the branch being used.</p>
 <div class="exampleblock">
 <div class="title">Example 3. Project-source type: git</div>
 <div class="content">
@@ -269,30 +273,15 @@ projects:
       remotes:
         origin: "https://github.com/my-org/project1.git"
       checkoutFrom:
-        revision: master           <i class="conum" data-value="1"></i><b>(1)</b>
-      tag: 7.2.0
-      commitId: 36fe587
-      branch: master</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>startPoint</code> is the general value for <code>tag</code>, <code>commitId</code>, and <code>branch</code>. The <code>startPoint</code>, <code>tag</code>, <code>commitId</code>, and <code>branch</code> parameters are mutually exclusive. When more than one is supplied, the following order is used: <code>startPoint</code>, <code>tag</code>, <code>commitId</code>, <code>branch</code>.</td>
-</tr>
-</table>
+        revision: master           <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 </div>
-</dd>
-<dt class="hdlist1"><code>github</code></dt>
-<dd>
-<p>Same as <code>git</code> but for projects hosted on <a href="https://github.com/">GitHub</a> only. Use <code>git</code> for projects that do not use GitHub-specific features.</p>
+</div>
 </dd>
 <dt class="hdlist1"><code>zip</code></dt>
 <dd>
-<p>Projects with sources in a ZIP archive. Location points to a ZIP file.</p>
+<p>Projects with sources in a ZIP archive. <code>location</code> refers to the URL of a ZIP file.</p>
 <div class="exampleblock">
 <div class="title">Example 4. Project-source type: zip</div>
 <div class="content">
@@ -323,7 +312,7 @@ projects:
   - name: my-project-resource
     clonePath: resources/my-project
     zip:
-      location: http://host.net/path/project-res.zip
+    location: http://host.net/path/project-res.zip
   - name: my-project2
       git:
         remotes:

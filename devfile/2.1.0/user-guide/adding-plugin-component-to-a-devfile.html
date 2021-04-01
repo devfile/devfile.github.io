@@ -217,90 +217,33 @@
 <p>Define a component using the type <code>plugin</code>.</p>
 </li>
 <li>
-<p>Define the <code>id</code> attribute. It is slash-separated publisher, name and version of plug-in from the Plug-in registry. List of available Devfile plug-ins and more information about registry can be found in the <a href="https://github.com/eclipse/che-plugin-registry">Devfile plug-in registry</a> GitHub repository.</p>
+<p>Define the <code>id</code> attribute. It is the stack name in a devfile v2 registry. Devfile v2 registry should follow the convention according to the <a href="https://github.com/devfile/api/blob/master/docs/proposals/registry/index-server-REST-API.md">proposal</a>.</p>
 <div class="exampleblock">
 <div class="title">Example 1. A devfile defining a plug-in <code>id</code></div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
-   - name: exec-plugin
+   - name: plugin-name
      plugin:
-      id: machine-exec-plugin/0.0.1</code></pre>
+      id: nodejs</code></pre>
 </div>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Optionally, specify an alternative component registry using the <code>registryUrl</code> parameter:</p>
+<p>Optional: Specify an alternative devfile registry using the <code>registryUrl</code> parameter:</p>
 <div class="exampleblock">
-<div class="title">Example 2. A devfile defining a plug-in <code>id</code> and an alternative component registry</div>
+<div class="title">Example 2. Defining a plug-in <code>id</code> and an alternative devfile registry</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
-   - name: exec-plugin
+   - name: plugin-name
      plugin:
-      id: machine-exec-plugin/0.0.1
+      id: nodejs
       registryUrl: https://my-customregistry.com</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Optionally, provide a direct link to the component descriptor (typically named <code>meta.yaml</code>) using the <code>reference</code> attribute, instead of using the <code>id</code>.</p>
-<div class="exampleblock">
-<div class="title">Example 3. A devfile defining a plug-in with a direct link to the component descriptor</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
-   - name: exec-plugin
-     plugin:
-      reference: https://raw.githubusercontent.com.../plugin/1.0.1/meta.yaml</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It is impossible to mix the <code>id</code> and <code>reference</code> fields in a single component definition; they are mutually exclusive.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Optionally, provide plugin component configuration using the <code>preferences</code> attribute</p>
-<div class="exampleblock">
-<div class="title">Example 4. Configuring JVM using plug-in preferences</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  id: redhat/java/0.38.0
-  plugin:
-    preferences:
-       java.jdt.ls.vmargs: '-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication'</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 5. Configuring preferences as an array:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  id: redhat/java/0.38.0
-  plugin:
-    preferences:
-      go.lintFlags: ["--enable-all", "--new"]</code></pre>
 </div>
 </div>
 </div>

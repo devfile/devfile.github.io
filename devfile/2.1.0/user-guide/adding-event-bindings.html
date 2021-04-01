@@ -193,7 +193,7 @@
 <article class="doc">
 <h1 class="page">Adding event bindings</h1>
 <div class="paragraph _abstract">
-<p>Adding event bindings.</p>
+<p>Commands can be bound to events to form four different types of events: <code>preStart</code>, <code>postStart</code>, <code>preStop</code>, and <code>postStop</code>.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -209,37 +209,30 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># v2.0
 ---
-components:
-  - container:
-      name: "copier"
-      image: ''
-  - container:
-      name: "maven"
-      image: ''
-  - plugin:
-      id: theia
-Commands:
-containerBuild:
-reference:
-composite:
-
-  - exec:
-      name: "copyNeededFiles"
-      component: "copier"
-      commandLine: "cp somefile"
-  - exec:
-      name: "buildAll"
-      component: "maven"
-      commandLine: "mvn ..."
-  - vsCodeTask:
-      name: "openFile"
-      component: "theia"
+commands:
+  - id: init-project
+    apply:
+      component: tools
+  - id: copy-artifacts
+    exec:
+      component: tools
+      commandLine: "cp files"
+      workingDir: $PROJECTS_ROOT
+  - id: init-cache
+    exec:
+      component: tools
+      commandLine: "init cache"
+      workingDir: /.m2
+  - id: pre-compile-cmd
+    composite:
+      commands:
+        - copy-artifacts
+        - init-cache
 events:
   preStart:
-    - "copyNeededFiles"
+    - init-project
   postStart:
-    - "buildAll"
-    - "openFile"</code></pre>
+    - pre-compile-cmd</code></pre>
 </div>
 </div>
 </div>

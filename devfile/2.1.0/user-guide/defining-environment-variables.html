@@ -194,7 +194,7 @@
 <article class="doc">
 <h1 class="page">Defining environment variables</h1>
 <div class="paragraph _abstract">
-<p>Environment variables are supported by the following component types: <code>container</code>, <code>plugin</code>, <code>kubernetes</code>, <code>openshift</code>.
+<p>Environment variables are supported by the <code>container</code> component and <code>exec</code> command.
 If the component has multiple containers, environment variables will be provisioned for each container.</p>
 </div>
 <div class="olist arabic">
@@ -203,13 +203,13 @@ If the component has multiple containers, environment variables will be provisio
 <li>
 <p>Specify environment variables for <code>container</code> components</p>
 <div class="exampleblock">
-<div class="title">Example 1. Specify environment variables for a <code>container</code> components</div>
+<div class="title">Example 1. Specifying environment variables for a <code>container</code> component</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 components:
   - name: go
     container:
@@ -218,57 +218,14 @@ components:
       mountSources: true
       command: ['sleep', 'infinity']
       env:
-        - name: GOPATH
+        - name: gopath
           value: $(PROJECTS_ROOT)/go</code></pre>
 </div>
 </div>
 </div>
 </div>
 </li>
-<li>
-<p>Specify environment variables for <code>plugin</code> components</p>
-<div class="exampleblock">
-<div class="title">Example 2. Specify environment variables for a <code>plugin</code> component</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
-metadata:
-  name: MyDevfile
-  - name: theia-editor
-    plugin:
-      id: eclipse/che-theia/next
-      memoryLimit: 2Gi
-      env:
-      - name: HOME
-        value: $(CHE_PROJECTS_ROOT)</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The variable expansion works between the environment variables, and it uses the Kubernetes convention for the variable references.</p>
-</li>
-<li>
-<p>The predefined variables are available for use in custom definitions.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </article>
   </div>

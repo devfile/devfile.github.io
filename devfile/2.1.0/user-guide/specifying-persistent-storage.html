@@ -194,7 +194,7 @@
 <article class="doc">
 <h1 class="page">Specifying persistent storage</h1>
 <div class="paragraph _abstract">
-<p>Components of any type can specify the custom volumes to be mounted on specific locations within the image. Note that the volume names are shared across all components and therefore this mechanism can also be used to share file systems between components.</p>
+<p>A <code>container</code> component can specify the volumes to be mounted on specific locations within the image. If the <code>container</code> component mounts the volume, then the volume needs a corresponding volume component of the same name. Volume names are shared across all components. Shared volume names can be used to share file systems among components.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -208,9 +208,9 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
 metadata:
-  name: MyDevfile
+  name: mydevfile
 components:
-  - name: MyDevfile
+  - name: mydevfile
     container:
       image: golang
       memoryLimit: 512Mi
@@ -218,54 +218,10 @@ components:
       command: ['sleep', 'infinity']
       volumeMounts:
         - name: cache
-          path: /.cache</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Specify volumes for <code>plugin</code> type:</p>
-<div class="exampleblock">
-<div class="title">Example 2. Specifying volumes for <code>plugin</code> type:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">scheamVersion: 2.0.0
-metadata:
-  name: MyDevfile
-components:
-  - name: theia-editor
-    plugin:
-      id: eclipse/che-theia/next
-      env:
-      - name: HOME
-        value: $(PROJECTS_ROOT)
-      volumeMounts:
-      - name: cache
-        path: /.cache</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Specify volumes for <code>kubernetes</code>/<code>openshift</code> type:</p>
-<div class="exampleblock">
-<div class="title">Example 3. Specifying volumes for <code>kubernetes</code>/<code>openshift</code> type:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
-metadata:
-  name: MyDevfile
-components:
-  - name: mongo
-    openshift:
-      reference: mongo-db.yaml
-      volumeMounts:
-      - name: mongo-persistent-storage
-        path: /data/db</code></pre>
+          path: /.cache
+  - name: cache
+    volume:
+          size: 2Gi</code></pre>
 </div>
 </div>
 </div>
