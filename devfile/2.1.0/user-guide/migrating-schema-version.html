@@ -99,7 +99,7 @@
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="refering-to-a-parent-devfile-in-a-devfile.html">Refering to a parent</a>
+    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
   </li>
 </ul>
   </li>
@@ -126,7 +126,7 @@
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="refering-to-a-parent-devfile-in-a-devfile.html">Refering to a parent</a>
+    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
   </li>
 </ul>
   </li>
@@ -190,16 +190,13 @@
 <article class="doc">
 <h1 class="page">Migrating schema version</h1>
 <div class="paragraph _abstract">
-<p>This section describes how to migrate schema version.</p>
+<p>This section describes how to migrate the existing schema version to a v2.x devfile. The schema version specified in a v1.x devfile still works in a v2.x devfile.</p>
 </div>
-<div class="ulist">
+<div class="olist arabic">
 <div class="title">Procedure</div>
-<ul>
+<ol class="arabic">
 <li>
-<p>Replace <code>apiVersion: 1.0.0</code> by <code>schemaVersion: 2.0.0</code>:</p>
-</li>
-</ul>
-</div>
+<p>To migrate a schema version from a v1.x devfile to a v2.x devfile, replace <code>apiVersion: 1.0.0</code> with <code>schemaVersion: 2.0.0</code>:</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -228,13 +225,12 @@ metadata:
 </tr>
 </tbody>
 </table>
-<div class="ulist _additional-resources">
+<div class="paragraph _additional-resources">
 <div class="title">Additional resources</div>
-<ul>
-<li>
-<p>See <a href="https://github.com/che-incubator/devworkspace-api/issues/7">corresponding issue</a></p>
+<p>For more information on migrating schema versions, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/7">schemaVersion attribute</a>.</p>
+</div>
 </li>
-</ul>
+</ol>
 </div>
 </article>
   </div>

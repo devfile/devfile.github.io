@@ -99,7 +99,7 @@
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="refering-to-a-parent-devfile-in-a-devfile.html">Refering to a parent</a>
+    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
   </li>
 </ul>
   </li>
@@ -126,7 +126,7 @@
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="refering-to-a-parent-devfile-in-a-devfile.html">Refering to a parent</a>
+    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
   </li>
 </ul>
   </li>
@@ -190,7 +190,7 @@
 <article class="doc">
 <h1 class="page">Migrating components</h1>
 <div class="paragraph _abstract">
-<p>This section describes how to migrate components to devfile v2. There ARE major changes in the <code>components</code> section of the devfile. A component specified in a v1.0 devfile will NOT work as it is in a devfile v2.0.</p>
+<p>This section describes how to migrate components to v2.x devfiles. A component specified in a v1.x devfile no longer works in a v2.x devfile.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -198,7 +198,7 @@
 <li>
 <p>Component is a polymorphic type</p>
 <div class="paragraph">
-<p>For a better syntax validation component now is defined as a polymorphic type and can be implemented as <code>container</code>, <code>kubernetes</code>, <code>openshift</code>, <code>plugin</code> or <code>volume</code>.</p>
+<p>The validation component is now defined as a polymorphic type and can be implemented as <code>container</code>, <code>kubernetes</code>, <code>openshift</code>, <code>plugin</code>, or <code>volume</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -216,61 +216,40 @@ components:
        uri: https://.../mongo.yaml</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>See <a href="https://github.com/devfile/api/issues/4">corresponding issue</a>.</p>
-</div>
-</li>
-<li>
-<p>Shared Volumes Across Components. See <a href="https://github.com/devfile/api/issues/19">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Out of Main Pod Components. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Replace Alias with Name. See  <a href="https://github.com/devfile/api/issues/9">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Renaming dockerimage component type. See  <a href="https://github.com/devfile/api/issues/8">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Specify sources path for containers. See  <a href="https://github.com/devfile/api/issues/17">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Specify size of volume for component. See <a href="https://github.com/devfile/api/issues/14">corresponding issue</a>.</p>
-</li>
-<li>
-<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/devfile/api/issues/33">corresponding issue</a>.</p>
-</li>
-</ol>
-</div>
-<div class="ulist _additional-resources">
+<div class="paragraph _additional-resources">
 <div class="title">Additional resources</div>
+<p>For more information on migrating components, go to the following GitHub issues:</p>
+</div>
+<div class="ulist">
 <ul>
 <li>
-<p>Component is a polymorphic type. See <a href="https://github.com/devfile/api/issues/4">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/4">Polymorphic component type</a></p>
 </li>
 <li>
-<p>Shared Volumes Across Components. See <a href="https://github.com/devfile/api/issues/19">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/19">Shared volumes across components</a></p>
 </li>
 <li>
-<p>Out of Main Pod Components. See  <a href="https://github.com/devfile/api/issues/48">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/48">Out of main pod containers</a></p>
 </li>
 <li>
-<p>Replace Alias with Name. See  <a href="https://github.com/devfile/api/issues/9">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/9">Replace alias with name</a></p>
 </li>
 <li>
-<p>Renaming dockerimage component type. See  <a href="https://github.com/devfile/api/issues/8">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/8">Rename dockerimage component type</a></p>
 </li>
 <li>
-<p>Specify sources path for containers. See  <a href="https://github.com/devfile/api/issues/17">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/17">Specify source path for containers</a></p>
 </li>
 <li>
-<p>Specify size of volume for component. See <a href="https://github.com/devfile/api/issues/14">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/14">Specify size of volume for components</a></p>
 </li>
 <li>
-<p>Containers endpoints (routes/ingresses). See <a href="https://github.com/devfile/api/issues/27">corresponding issue</a>.</p>
+<p><a href="https://github.com/devfile/api/issues/27">Container endpoints: routes and ingresses</a></p>
 </li>
 </ul>
+</div>
+</li>
+</ol>
 </div>
 </article>
   </div>
