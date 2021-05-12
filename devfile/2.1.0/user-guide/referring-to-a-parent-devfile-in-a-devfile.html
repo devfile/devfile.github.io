@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.0.0/user-guide/refering-to-a-parent-devfile-in-a-devfile.html">
-    <meta name="description" content="Refering to a parent devfile in a devfile">
-    <meta name="keywords" content="authoring, stack, refering, parent">
+    <title>Referring to a parent devfile in a devfile :: Devfile Documentation</title>
+    <meta name="description" content="Referring to a parent devfile in a devfile">
+    <meta name="keywords" content="authoring, stack, referring, parent">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -98,8 +97,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="referring-to-a-parent-devfile-in-a-devfile.html">Referring to a parent</a>
   </li>
 </ul>
   </li>
@@ -125,8 +124,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="adding-event-bindings.html">Adding event bindings</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#referring-to-a-parent-devfile-in-a-devfile.adoc">referring-to-a-parent-devfile-in-a-devfile.adoc</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="referring-to-a-parent-devfile-in-a-devfile.html">Referring to a parent</a>
   </li>
 </ul>
   </li>
@@ -168,23 +167,125 @@
 <button class="nav-toggle"></button>
   <a href="../../2.0.0/user-guide/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Devfile User Guide 2.1.0</a></li>
+    <li><a href="authoring-stacks.html">Authoring stacks</a></li>
+    <li><a href="referring-to-a-parent-devfile-in-a-devfile.html">Referring to a parent</a></li>
+  </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.1.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="refering-to-a-parent-devfile-in-a-devfile.html">2.1.0-alpha</a>
-    <a class="version" href="../../2.0.0/user-guide/refering-to-a-parent-devfile-in-a-devfile.html">2.0.0</a>
+    <a class="version is-current" href="referring-to-a-parent-devfile-in-a-devfile.html">2.1.0-alpha</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/refering-to-a-parent-devfile-in-a-devfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/referring-to-a-parent-devfile-in-a-devfile.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Referring to a parent devfile in a devfile</h1>
+<div class="paragraph _abstract">
+<p>This section describes how to designate a parent devfile to a given devfile. If you designate a parent devfile, the given devfile inherits all its behavior from its parent.  Still, you can use the child devfile to override certain content from the parent devfile. If you override the correct content, you can reuse the same parent devfile in multiple other devfiles. If you do reuse a parent devfile, the parent turns into a stack that is used in multiple other devfiles.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Define the <code>schemaVersion</code> to v2.x. If you need to define your <code>schemaVersion</code>, go to <a href="adding-schema-version-to-a-devfile.html" class="page">Adding schema version to a devfile</a>.</p>
+</li>
+<li>
+<p>Define a name for the devfile. If you need to define a name for your devfile, go to <a href="adding-a-name-to-a-devfile.html" class="page">Adding a name to a devfile</a>.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/user-guide/pages/refering-to-a-parent-devfile-in-a-devfile.adoc - include::partial$proc_refering-to-a-parent-devfile-in-a-devfile.adoc[]</p>
+<div class="title">Procedure</div>
+<p>You can refer to a parent devfile in three different ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>registry</code></p>
+</li>
+<li>
+<p><code>uri</code></p>
+</li>
+<li>
+<p><code>kubernetes</code></p>
+<div class="exampleblock">
+<div class="title">Example 1. Parent referred by registry</div>
+<div class="content">
+<div class="paragraph">
+<p>Using its <code>id</code> if it has been published in a registry.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+metadata:
+  name: my-project-dev
+parent:
+    id: redhat/nodejs
+    registry: https://devfile-registry.io/</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Parent referred by uri</div>
+<div class="content">
+<div class="paragraph">
+<p>Using the URI if it has been published on a static http server (like gist or pastebin).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+metadata:
+  name: my-project-dev
+parent:
+    uri: https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/nodejs/devfile.yaml</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Parent identified by a Kubernetes resource</div>
+<div class="content">
+<div class="paragraph">
+<p>Using a Kubernetes resource name and namespace if it has been deployed on a Kubernete cluster.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+metadata:
+  name: my-project-dev
+parent:
+    kubernetes:
+        name: mydevworkspacetemplate
+        namespace: mynamespace</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph _additional-resources">
+<div class="title">Additional resources</div>
+<p>For more information on referring to parent devfiles, go to the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="api-reference.html" class="page">API Reference</a></p>
+</li>
+<li>
+<p><a href="devfile-samples.html" class="page">Devfile resources</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>
