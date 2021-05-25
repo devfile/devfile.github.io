@@ -203,7 +203,7 @@
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
 metadata:
   name: mydevfile
 projects:
@@ -287,16 +287,10 @@ Listening on any other interface than the local loopback poses a security risk b
 <div class="listingblock">
 <div class="title">Specifying endpoints for <code>kubernetes</code> or <code>openshift</code> types:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
 metadata:
   name: mydevfile
 components:
-  - name: theia-editor
-      endpoints:
-      - name: 'theia-extra-endpoint'
-        targetPort: 8880
-        exposure: public
-
   - openshift:
       name: webapp
       uri: webapp.yaml

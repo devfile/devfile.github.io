@@ -230,11 +230,9 @@ components:
       endpoints:
       - name: web
         targetPort: 8080
-        configuration:
-          discoverable: false
-          public: true
-          protocol: tcp
-          scheme: http
+        exposure: public
+        protocol: http
+
   - name: postgres
     container:
       image: postgres
@@ -265,10 +263,7 @@ components:
 <div class="ulist">
 <ul>
 <li>
-<p><code>discoverable</code>: If an endpoint is discoverable, it means that it can be accessed using its name as the host name within the workspace containers (in the Kubernetes parlance, a Service is created for it with the provided name).</p>
-</li>
-<li>
-<p><code>public</code>: The endpoint will also be accessible outside of the workspace: such endpoint can be accessed from the Devfile user interface and is always exposed on port <code>80</code> or <code>443</code> (depending on whether <code>tls</code> is enabled in Devfile).</p>
+<p><code>exposure</code>: When its value is <code>public</code>, the endpoint is accessible outside the workspace. Users can access such an endpoint from the devfile user interface, and the endpoint is always exposed on port 80 or 443 depending on whether TLS is enabled in the devfile.</p>
 </li>
 <li>
 <p><code>protocol</code>: For public endpoints the protocol is a hint to the UI on how to construct the URL for the endpoint access. Typical values are <code>http</code>, <code>https</code>, <code>ws</code>, <code>wss</code>.</p>
@@ -291,24 +286,6 @@ Listening on any other interface than the local loopback poses a security risk b
 <li>
 <p><code>path</code>: The URL of the endpoint.</p>
 </li>
-<li>
-<p><code>unsecuredPaths</code>: A comma-separated list of endpoint paths that are to stay unsecured even if the <code>secure</code> attribute is set to <code>true</code>.</p>
-</li>
-<li>
-<p><code>cookiesAuthEnabled</code>: When set to <code>true</code> (the default is <code>false</code>), the JWT workspace token is automatically fetched and included in a workspace-specific cookie to allow requests to pass through the JWT proxy.</p>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-This setting potentially allows a <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">CSRF</a> attack when used in conjunction with a server using POST requests.
-</td>
-</tr>
-</table>
-</div>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -329,9 +306,7 @@ components:
       endpoints:
       - name: 'theia-extra-endpoint'
         targetPort: 8880
-        configuration:
-          discoverable: true
-          public: true
+        exposure: public
 
   - plugin:
       id: redhat/php/latest
@@ -346,9 +321,7 @@ components:
       endpoints:
       - name: 'theia-extra-endpoint'
         targetPort: 8880
-        configuration:
-          discoverable: true
-          public: true
+        exposure: public
 
   - openshift:
       name: webapp
@@ -356,10 +329,8 @@ components:
       endpoints:
       - name: 'web'
         targetPort: 8080
-        configuration:
-          discoverable: false
-          public: true
-          protocol: http
+        exposure: public
+        protocol: http
 
   - openshift:
       name: mongo
@@ -367,9 +338,7 @@ components:
       endpoints:
       - name: 'mongo-db'
         targetPort: 27017
-        configuration:
-          discoverable: true
-          public: false</code></pre>
+        exposure: public</code></pre>
 </div>
 </div>
 </article>

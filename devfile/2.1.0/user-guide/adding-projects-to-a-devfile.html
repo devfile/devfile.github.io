@@ -213,17 +213,17 @@
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
 metadata:
   name: petclinic-dev-environment
-  version: 2.0.0
+  version: 1.0.0
 projects:
   - name: petclinic
     git:
       remotes:
         origin: "https://github.com/spring-projects/spring-petclinic.git"
       checkoutFrom:
-        revision: master</code></pre>
+        revision: main</code></pre>
 </div>
 </div>
 </div>
@@ -233,10 +233,10 @@ projects:
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
 metadata:
   name: example-devfile
-  version: 2.0.0
+  version: 1.0.0
 projects:
 - name: frontend
   git:
@@ -272,7 +272,7 @@ projects:
       remotes:
         origin: "https://github.com/my-org/project1.git"
       checkoutFrom:
-        revision: master           <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+        revision: main           <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 </div>
@@ -304,7 +304,7 @@ projects:
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.0.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
 metadata:
   name: my-project-dev
   version: 2.0.0
@@ -312,7 +312,7 @@ projects:
   - name: my-project-resource
     clonePath: resources/my-project
     zip:
-    location: http://host.net/path/project-res.zip
+      location: http://host.net/path/project-res.zip
   - name: my-project2
       git:
         remotes:
