@@ -195,7 +195,7 @@
 <article class="doc">
 <h1 class="page">Adding <code>container</code> components to a devfile</h1>
 <div class="paragraph _abstract">
-<p>A component type that allows to define a container image-based configuration of a container in a workspace. A devfile can contain one or more component(s) of the <code>container</code> type. The <code>container</code> type of component brings in custom tools into the workspace. The component is identified by its image.</p>
+<p>Use the <code>container</code> component type to define an image-based configuration of a container in a workspace. This allows to incorporate custom tools into the workspace. A devfile can contain one or more components of the <code>container</code> type. The <code>image</code> attribute identifies the component.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -258,10 +258,10 @@ components:
 </div>
 </div>
 <div class="paragraph">
-<p>It specifies the type of the component, <code>container</code> and the <code>image</code> attribute names the image to be used for the component using the usual Docker naming conventions, that is, the above <code>image</code> attribute is equal to <code>docker.io/library/golang:latest</code>.</p>
+<p>Specify the type of component using the <code>container</code> attribute. Use the <code>image</code> attribute to specify the image for the component. When defining the <code>image</code>, use container naming conventions. For example, the <code>image</code> attribute in the preceding example refers to the <code>docker.io/library/golang:latest</code> container image.</p>
 </div>
 <div class="paragraph">
-<p>A <code>container</code> component has many features that enable augmenting the image with additional resources and information needed for meaningful integration of the <strong>tool</strong> provided by the image with Devfile.</p>
+<p>Use the <code>container</code> component to augment the image with additional resources and information to allow for integrating the tooling provided by the image with the application that consumes the devfile, for example, Eclipse Che.</p>
 </div>
 </li>
 <li>
@@ -290,7 +290,7 @@ components:
 <li>
 <p>Container Entrypoint</p>
 <div class="paragraph">
-<p>The <code>command</code> attribute of the <code>container</code> along with other arguments, is used to modify the <code>entrypoint</code> command of the container created from the image. In Devfile the container is needed to run indefinitely so that you can connect to it and execute arbitrary commands in it at any time. Because the availability of the <code>sleep</code> command and the support for the <code>infinity</code> argument for it is different and depends on the base image used in the particular images, Devfile cannot insert this behavior automatically on its own. However, you can take advantage of this feature to, for example, start up necessary servers with modified configurations, etc.</p>
+<p>Use the <code>command</code> attribute of the <code>container</code> type to modify the <code>entrypoint</code> command of the container created from the image. When a devfile is used in Eclipse Che, the container runs indefinitely, so the user can consistently connect to it and execute commands in it. The availability of the <code>sleep</code> command and the support for the <code>infinity</code> argument depend on the base image used in the particular images.</p>
 </div>
 </li>
 </ol>

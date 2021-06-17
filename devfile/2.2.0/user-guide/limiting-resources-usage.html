@@ -194,13 +194,16 @@
 </aside>
 <article class="doc">
 <h1 class="page">Limiting resources usage</h1>
-<div class="olist arabic _abstract">
+<div class="paragraph _abstract">
+<p>This section describes how to limit resource use in devfiles.</p>
+</div>
+<div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
 <p>Specify container memory limit and memory request for components</p>
 <div class="paragraph">
-<p>To specify a container memory limit for <code>container</code>, use the <code>memoryLimit</code> parameter, and to specify a container memory request, use the <code>memoryRequest</code> parameter:</p>
+<p>To specify a container memory limit for <code>container</code>, use the <code>memoryLimit</code> parameter. To specify a container memory request, use the <code>memoryRequest</code> parameter:</p>
 </div>
 <div class="exampleblock">
 <div class="title">Example 1. Specify container memory limit and memory request for components</div>
@@ -221,13 +224,13 @@
 <p>This limit applies to every container of the given component.</p>
 </div>
 <div class="paragraph">
-<p>If they are not specified, the values are undetermined: they may or may not be inferred from the application that consumes the devfile or from Kubernetes.</p>
+<p>When not specified, the values may or may not be inferred from the application that consumes the devfile or from the underlying platform (for example, Kubernetes).</p>
 </div>
 </li>
 <li>
 <p>Specify container CPU limit and container CPU request for components</p>
 <div class="paragraph">
-<p>To specify a container CPU limit for <code>container</code>, use the <code>cpuLimit</code> parameter, and to specify a container CPU request for <code>container</code>, use the <code>cpuRequest</code> parameter:</p>
+<p>To specify a container CPU limit for <code>container</code>, use the <code>cpuLimit</code> parameter. To specify a container CPU request for <code>container</code>, use the <code>cpuRequest</code> parameter:</p>
 </div>
 <div class="exampleblock">
 <div class="title">Example 2. Specify container CPU limit and CPU request for components</div>
@@ -248,7 +251,7 @@
 <p>This limit applies to every container of the given component.</p>
 </div>
 <div class="paragraph">
-<p>If they are not specified, the values are undetermined: they may or may not be inferred from the application that consumes the devfile or from Kubernetes.</p>
+<p>When not specified, the values may or may not be inferred from the application that consumes the devfile or from the underlying platform (for example, Kubernetes).</p>
 </div>
 </li>
 </ol>
