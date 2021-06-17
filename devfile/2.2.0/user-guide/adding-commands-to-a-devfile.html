@@ -194,7 +194,7 @@
 <article class="doc">
 <h1 class="page">Adding commands to a devfile</h1>
 <div class="paragraph _abstract">
-<p>A devfile allows to specify commands to be available for execution in a workspace. Every command can contain a subset of actions, which are related to a specific component in whose container it will be executed.</p>
+<p>A devfile allows to specify commands to be available for execution in a workspace. Every command can contain a subset of actions. These subsets are related to specific components and are executed in the component containers.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -220,7 +220,23 @@
 <p>For each command, define an unique value for the mandatory <code>id</code> attribute.</p>
 </li>
 <li>
-<p>For each command, define a mandatory type of one of the following types: <code>exec</code>, <code>apply</code>, <code>composite</code>, or <code>vscode-tasks</code>.</p>
+<p>For each command, define a mandatory type of one of the following types:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>exec</code></p>
+</li>
+<li>
+<p><code>apply</code></p>
+</li>
+<li>
+<p><code>composite</code></p>
+</li>
+<li>
+<p><code>vscode-tasks</code></p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="title">Sample command</div>
 <div class="content">
@@ -287,7 +303,23 @@ commands:
 <li>
 <p>Command group</p>
 <div class="paragraph">
-<p>A given command can be assigned to one or more groups that represents the nature of the command.  The support groups are: <code>build</code>, <code>run</code>, <code>test</code> and <code>debug</code>. For each of the groups, one default command can be defined in each group by specifying the <code>isDefault</code> value.</p>
+<p>To assign a given command to one or more groups that represent the nature of the command, use the following supported group types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>build</code></p>
+</li>
+<li>
+<p><code>run</code></p>
+</li>
+<li>
+<p><code>test</code></p>
+</li>
+<li>
+<p><code>debug</code></p>
+<div class="paragraph">
+<p>For each of the groups, define one default command by specifying the <code>isDefault</code> value.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -323,10 +355,13 @@ commands:
 </div>
 </div>
 </li>
+</ul>
+</div>
+</li>
 <li>
 <p>Composite command</p>
 <div class="paragraph">
-<p>A composite command can be defined to chain multiple commands together. The individual commands that are called from a composite command can be referenced by the <code>name</code> of the command.  A <code>parallel</code> boolean can be specified to determine if the commands within a composite command are being executed sequentially or in parallel.</p>
+<p>To chain multiple commands together, define a composite command. To reference the individual commands that are called from a composite command, use the <code>name</code> of the command. To specify whether commands within a composite command are to be executed sequentially or in parallel, define the <code>parallel</code> boolean.</p>
 </div>
 <div class="listingblock">
 <div class="content">

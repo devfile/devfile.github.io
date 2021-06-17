@@ -226,8 +226,10 @@ metadata:
 projects:
   - name: petclinic
     git:
-      location: 'https://github.com/spring-projects/spring-petclinic.git'
-      branch: master</code></pre>
+      remotes:
+        origin: 'https://github.com/spring-projects/spring-petclinic.git'
+      checkoutFrom:
+        revision: master</code></pre>
 </div>
 </div>
 </div>
@@ -243,10 +245,12 @@ metadata:
 projects:
 - name: frontend
   git:
-    location: https://github.com/acmecorp/frontend.git
+    remotes:
+      origin: https://github.com/acmecorp/frontend.git
 - name: backend
   git:
-    location: https://github.com/acmecorp/backend.git</code></pre>
+    remotes:
+      origin: https://github.com/acmecorp/backend.git</code></pre>
 </div>
 </div>
 </div>
@@ -261,7 +265,7 @@ projects:
 <dl>
 <dt class="hdlist1"><code>git</code></dt>
 <dd>
-<p>Projects with sources in Git. The location points to a clone link.</p>
+<p>Projects with sources in Git.</p>
 <div class="exampleblock">
 <div class="title">Example 3. Project-source type: git</div>
 <div class="content">
