@@ -195,7 +195,7 @@
 <article class="doc">
 <h1 class="page">Defining Kubernetes resources</h1>
 <div class="paragraph _abstract">
-<p>Complex deployments can be described using Kubernetes or OpenShift resource lists that can be referenced in the devfile. This makes them a part of the workspace</p>
+<p>This section explains how to reference Kubernetes or OpenShift resource lists in devfiles in order to describe complex deployments.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -208,16 +208,45 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Because a Devfile workspace is internally represented as a single deployment, all resources from the Kubernetes or OpenShift list are merged into that single deployment.</p>
+<p>Because a devfile is internally represented as a single deployment, all resources from the Kubernetes or OpenShift list are merged into that single deployment.</p>
 </li>
 <li>
-<p>Be careful when designing such lists because this can result in name conflicts and other problems.</p>
+<p>Avoid name conflicts when designing such lists.</p>
 </li>
 <li>
-<p>Only the following subset of the Kubernetes objects are supported: <code>deployments</code>, <code>pods</code>, <code>services</code>, <code>persistent volume claims</code>, <code>secrets</code>, and <code>config maps</code>. Kubernetes Ingresses are ignored, but OpenShift routes are supported. A workspace created from a devfile using any other object types fails to start.</p>
+<p>When running devfiles on a Kubernetes cluster, only Kubernetes lists are supported. When running devfiles on an OpenShift cluster, both Kubernetes and OpenShift lists are supported:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deployments</code></p>
 </li>
 <li>
-<p>When running Devfile on a Kubernetes cluster, only Kubernetes lists are supported. When running Devfile on an OpenShift cluster, both Kubernetes and OpenShift lists are supported.</p>
+<p><code>pods</code></p>
+</li>
+<li>
+<p><code>services</code></p>
+</li>
+<li>
+<p><code>persistent volume claims</code></p>
+</li>
+<li>
+<p><code>secrets</code></p>
+</li>
+<li>
+<p><code>config maps</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Kubernetes Ingresses are ignored, but OpenShift routes are supported. A workspace created from a devfile using any other object types fails to start.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When running devfiles on a Kubernetes cluster, only Kubernetes lists are supported. When running devfiles on an OpenShift cluster, both Kubernetes and OpenShift lists are supported.</p>
 </li>
 </ul>
 </div>
@@ -243,10 +272,10 @@ components:
 </div>
 </div>
 <div class="paragraph">
-<p>The preceding component references a file that is relative to the location of the devfile itself. Meaning, this devfile is only loadable by a Devfile factory to which you supply the location of the devfile and therefore it is able to figure out the location of the referenced Kubernetes resource list.</p>
+<p>The preceding component references a file that is relative to the location of the devfile. Therefore, this devfile is only loadable by a factory. You supply the location of your devfile to the factory, and then use your devfile to determine the location of the referenced Kubernetes resource list.</p>
 </div>
 <div class="paragraph">
-<p>The following is an example of the <code>postgres.yaml</code> file.</p>
+<p>The following is an example of the <code>postgres.yaml</code> file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -305,7 +334,7 @@ items:
 </div>
 </div>
 <div class="paragraph">
-<p>For a basic example of a devfile with an associated Kubernetes or OpenShift list, see <a href="https://github.com/redhat-developer/devfile/tree/master/samples/web-nodejs-with-db-sample">web-nodejs-with-db-sample</a> on redhat-developer GitHub.</p>
+<p>For a basic example of a devfile with an associated Kubernetes or OpenShift list, see <a href="https://github.com/redhat-developer/devfile/tree/master/samples/web-nodejs-with-db-sample">web-nodejs-with-db-sample</a>.</p>
 </div>
 </article>
   </div>
