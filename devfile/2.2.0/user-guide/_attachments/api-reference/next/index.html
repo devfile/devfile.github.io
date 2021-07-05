@@ -1691,6 +1691,28 @@
                                                 
                                                         <section class="json-schema-properties">
                                                             <dl>
+                                                                        <dt data-property-name="architectures">
+                                                                            <span class="json-property-name">architectures:</span>
+                                                                            
+                                                                            <span class="json-property-type">string[]</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Optional list of processor architectures that the devfile supports, empty list suggests that the devfile can be used on any architecture. Architecture values are <code>amd64</code>, <code>arm64</code>, <code>ppc64le</code>, <code>s390x</code></p>
+                                                        
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                                                <section class="json-schema-array-items">
+                                                                                                    
+                                                                                                    <span class="json-property-type">string</span>
+                                                                                                    <span class="json-property-range" title="Value limits"></span>
+                                                                                                    
+                                                                                                    <div class="json-inner-schema">
+                                                                                                        
+                                                                                                    </div>
+                                                                                                </section>                    </div>
+                                                                        </dd>
                                                                         <dt data-property-name="attributes">
                                                                             <span class="json-property-name">attributes:</span>
                                                                             
@@ -4328,7 +4350,14 @@
                                         <dd>
                                             <p>Map of key-value variables used for string replacement in the devfile. Values can can be referenced via {{variable-key}} to replace the corresponding value in string fields in the devfile. Replacement cannot be used for</p>
                         <ul>
-                        <li>schemaVersion, metadata, parent source  - element identifiers, e.g. command id, component name, endpoint name, project name  - references to identifiers, e.g. in events, a command&#39;s component, container&#39;s volume mount name  - string enums, e.g. command group kind, endpoint exposure</li>
+                        <li><p>schemaVersion, metadata, parent source</p>
+                        </li>
+                        <li><p>element identifiers, e.g. command id, component name, endpoint name, project name</p>
+                        </li>
+                        <li><p>references to identifiers, e.g. in events, a command&#39;s component, container&#39;s volume mount name</p>
+                        </li>
+                        <li><p>string enums, e.g. command group kind, endpoint exposure</p>
+                        </li>
                         </ul>
                         
                                             <div class="json-inner-schema">
