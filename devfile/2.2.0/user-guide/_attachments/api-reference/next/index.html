@@ -1699,16 +1699,30 @@
                                                                             
                                                                         </dt>
                                                                         <dd>
-                                                                            <p>Optional list of processor architectures that the devfile supports, empty list suggests that the devfile can be used on any architecture. Architecture values are <code>amd64</code>, <code>arm64</code>, <code>ppc64le</code>, <code>s390x</code></p>
+                                                                            <p>Optional list of processor architectures that the devfile supports, empty list suggests that the devfile can be used on any architecture</p>
                                                         
                                                                             <div class="json-inner-schema">
                                                                                 
                                                                                                 <section class="json-schema-array-items">
                                                                                                     
-                                                                                                    <span class="json-property-type">string</span>
+                                                                                                    <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                                                                                    <span class="json-property-enum-item">amd64</span>
+                                                                                                                ,
+                                                                                                                    <span class="json-property-enum-item">arm64</span>
+                                                                                                                ,
+                                                                                                                    <span class="json-property-enum-item">ppc64le</span>
+                                                                                                                ,
+                                                                                                                    <span class="json-property-enum-item">s390x</span>
+                                                                                                                
+                                                                                                            }
+                                                                                                            </span>
                                                                                                     <span class="json-property-range" title="Value limits"></span>
                                                                                                     
                                                                                                     <div class="json-inner-schema">
+                                                                                                            <section class="json-schema-description">
+                                                                                                                <p>Architecture describes the architecture type</p>
+                                                                                                        
+                                                                                                            </section>
                                                                                                         
                                                                                                     </div>
                                                                                                 </section>                    </div>
