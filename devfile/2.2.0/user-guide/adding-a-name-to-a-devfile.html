@@ -197,8 +197,38 @@
 <article class="doc">
 <h1 class="page">Adding a name to a devfile</h1>
 <div class="paragraph _abstract">
-<p>Adding a name to a devfile is mandatory. Use the <code>name</code> or <code>generateName</code> attributes (or both) to define the name.</p>
+<p>Adding a name to a devfile is mandatory. Use the <code>name</code> attribute to define the name. See the following table for metadata properties in a devfile:</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of your devfile. This name links you to the devfile registry if listed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of your devfile.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -222,38 +252,7 @@ metadata:
 </div>
 </div>
 </li>
-<li>
-<p>To specify a prefix for automatically generated workspace names, define the <code>generateName</code> attribute and not the <code>name</code> attribute.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The workspace name is in the <code>&lt;generateName&gt;YYYYY</code> format, for example, <code>devfile-sample-2y7kp</code>. <code>Y</code> is a random charater, <code>[a-z0-9]</code>.</p>
-<div class="listingblock">
-<div class="title">Adding a generated name to a devfile</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  generateName: devfile-sample
-  version: 2.0.0</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Defining <code>name</code> or <code>generateName</code> has the same effect when creating workspaces using a factory. The value forms the name prefix: <code>&lt;name&gt;YYYYY</code> or <code>&lt;generateName&gt;YYYYY</code>. When defining both <code>generateName</code> and <code>name</code>, <code>generateName</code> takes precedence.
-</td>
-</tr>
-</table>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>

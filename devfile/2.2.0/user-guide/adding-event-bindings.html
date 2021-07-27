@@ -197,8 +197,67 @@
 <article class="doc">
 <h1 class="page">Adding event bindings</h1>
 <div class="paragraph _abstract">
-<p>This section describes how to add an event to a v2.x devfile. An event specified in a v1.x devfile still works in a v2.x devfile.</p>
+<p>This section describes how to add an event to a v2.x devfile. An event can have three different type of objects:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>preStartObject</p>
+</li>
+<li>
+<p>postStartObject</p>
+</li>
+<li>
+<p>preStopObject</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">preStartObject</div>
+<p>You can execute preStart events as init containers for the project pod in the order you specify the preStart events. The devfile <code>commandLine</code> and <code>workingDir</code> are the commands for the init container. As a result, the init container overwrites either the devfile or the container image <code>command</code> and <code>args</code>. If you use a composite command with <code>parallel: true</code>, the composite command executes as Kubernetes init containers.</p>
+</div>
+<div class="paragraph">
+<div class="title">postStartObject</div>
+<p>When you create the Kubernetes deployment for the <code>odo</code> component, execute the postStart events.</p>
+</div>
+<div class="paragraph">
+<div class="title">preStopObject</div>
+<p>Before you delete the Kubernetes deployment for the <code>odo</code> component, execute the preStop events.</p>
+</div>
+<div class="paragraph">
+<p>See the following list for event properties in a devfile:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. envObject</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the environment variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of the environment variable.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
