@@ -198,7 +198,10 @@
 <article class="doc">
 <h1 class="page">Adding <code>container</code> components to a devfile</h1>
 <div class="paragraph _abstract">
-<p>Use the <code>container</code> component type to define an image-based configuration of a container in a workspace. This allows to incorporate custom tools into the workspace. A devfile can contain one or more components of the <code>container</code> type. The <code>image</code> attribute identifies the component.</p>
+<p>To incorporate custom tools into the workspace, define an image-based configuration of a container in a workspace. Define this configuration by using the <code>container</code> component type.</p>
+</div>
+<div class="paragraph">
+<p>A devfile can contain one or more components of the <code>container</code> type. The <code>component name</code> attribute identifies each component, including the container.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -261,10 +264,10 @@ components:
 </div>
 </div>
 <div class="paragraph">
-<p>Specify the type of component using the <code>container</code> attribute. Use the <code>image</code> attribute to specify the image for the component. When defining the <code>image</code>, use container naming conventions. For example, the <code>image</code> attribute in the preceding example refers to the <code>docker.io/library/golang:latest</code> container image.</p>
+<p>Specify the type of component using the <code>container</code> attribute. Use the <code>image</code> attribute to specify the image for the component. When defining the <code>image</code>, use container naming conventions. For example, the <code>image</code> attribute in the preceding example refers to the container image,  <code>docker.io/library/golang:latest</code>.</p>
 </div>
 <div class="paragraph">
-<p>Use the <code>container</code> component to augment the image with additional resources and information to allow for integrating the tooling provided by the image with the application that consumes the devfile, for example, Eclipse Che.</p>
+<p>Use the <code>container</code> component to augment the image with additional resources and information. This component allows you to integrate the tooling provided by the image with the application that consumes the devfile.</p>
 </div>
 </li>
 <li>
@@ -287,13 +290,13 @@ components:
 </div>
 </div>
 <div class="paragraph">
-<p>The sources is mounted on a location stored in the <code>PROJECTS_ROOT</code> environment variable that is made available in the running container of the image. This location defaults to <code>/projects</code>. If <code>sourceMapping</code> is defined in the container, it overrides the 'PROJECT_ROOT' value if present and mounts the source to the path defined by <code>sourceMapping</code>.</p>
+<p>The sources are mounted on a location stored in the <code>PROJECTS_ROOT</code> environment variable that is made available in the running container of the image. This location defaults to <code>/projects</code>. If <code>sourceMapping</code> is defined in the container, it overrides the <code>PROJECT_ROOT</code> value and mounts the source to the path defined by <code>sourceMapping</code>.</p>
 </div>
 </li>
 <li>
 <p>Container Entrypoint</p>
 <div class="paragraph">
-<p>Use the <code>command</code> attribute of the <code>container</code> type to modify the <code>entrypoint</code> command of the container created from the image. When a devfile is used in Eclipse Che, the container runs indefinitely, so the user can consistently connect to it and execute commands in it. The availability of the <code>sleep</code> command and the support for the <code>infinity</code> argument depend on the base image used in the particular images.</p>
+<p>Use the <code>command</code> attribute of the <code>container</code> type to modify the <code>entrypoint</code> command of the container created from the image. The availability of the <code>sleep</code> command and the support for the <code>infinity</code> argument depend on the base image used in the particular images.</p>
 </div>
 </li>
 </ol>

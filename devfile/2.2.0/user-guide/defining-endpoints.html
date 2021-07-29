@@ -198,7 +198,7 @@
 <article class="doc">
 <h1 class="page">Defining endpoints</h1>
 <div class="paragraph _abstract">
-<p>Components of any type can specify the endpoints that the container exposes. You can create an endpoint for your application if your application server is listening on a port.</p>
+<p>This section describes how to define endpoints and specify their properties.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
@@ -258,7 +258,7 @@ components:
 </ol>
 </div>
 <div class="paragraph">
-<p>This example has two containers, each defining a single endpoint. The endpoint is an accessible port that can be made accessible inside the workspace. Each endpoint has a name and port, which is the port on which the server running inside the container is listening. See the following attributes that you can set on the endpoint:</p>
+<p>This example has two containers that each define an endpoint. An endpoint has a name and a port that can be made accessible inside the workspace. The server running inside the container is listening on this port. See the following attributes that you can set on the endpoint:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -266,10 +266,10 @@ components:
 <p><code>exposure</code>: When its value is <code>public</code>, the endpoint is accessible outside the workspace and is exposed on port <code>80</code> or <code>443</code> depending on whether TLS is enabled in devfiles. Access this endpoint from the devfile user interface.</p>
 </li>
 <li>
-<p><code>protocol</code>: For public endpoints, the protocol is a hint to the UI on how to construct the URL for the endpoint access. Typical values are <code>http</code>, <code>https</code>, <code>ws</code>, <code>wss</code>.</p>
+<p><code>protocol</code>: For public endpoints, the protocol indicates to the devfile consumer how to construct the URL for the endpoint access. Typical values are <code>http</code>, <code>https</code>, <code>ws</code>, <code>wss</code>.</p>
 </li>
 <li>
-<p><code>secure</code>: A boolean defaulting to <code>false</code> that specifies whether the endpoint is put behind a JWT proxy requiring a JWT workspace token to grant access. The JWT proxy is deployed in the same Pod as the server and assumes the server listens solely on the local loopback interface, such as <code>127.0.0.1</code>.</p>
+<p><code>secure</code>: Boolean. The default value is <code>false</code>. Setting this value to <code>true</code> puts the endpoint behind a JWT proxy. When the endpoint is secured this way, clients must supply a JWT workspace token to call this endpoint. The JWT proxy is deployed in the same Pod as the server and assumes the server listens only on the local loopback interface, such as <code>127.0.0.1</code>.</p>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -277,7 +277,7 @@ components:
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Listening on any other interface than the local loopback poses a security risk because such server is accessible without the JWT authentication within the cluster network on the corresponding IP addresses.
+Listening on any other interface than the local loopback poses a security risk. Such a server is accessible without the JWT authentication within the cluster network on the corresponding IP addresses.
 </td>
 </tr>
 </table>
@@ -287,9 +287,6 @@ Listening on any other interface than the local loopback poses a security risk b
 <p><code>path</code>: The URL of the endpoint.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>When starting a new server within a component, the devfile autodetects this, and the component UI offers to automatically expose this port as an <code>exposure</code> port. Use this port to debug a web application. You cannot debug a web application for servers that autostart with the container, such as a database server. For such components, specify the endpoints explicitly.</p>
 </div>
 <div class="listingblock">
 <div class="title">Specifying endpoints for <code>kubernetes</code> or <code>openshift</code> types:</div>

@@ -211,7 +211,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Because a devfile is internally represented as a single deployment, all resources from the Kubernetes or OpenShift list are merged into that single deployment.</p>
+<p>Because a devfile is internally represented as a single deployment, all resources from the Kubernetes or OpenShift list merge into that single deployment.</p>
 </li>
 <li>
 <p>Avoid name conflicts when designing such lists.</p>
@@ -257,6 +257,9 @@
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The following component references a file that is relative to the location of the devfile:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
@@ -273,9 +276,6 @@ components:
     kubernetes:
       uri: ../relative/path/postgres.yaml</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The preceding component references a file that is relative to the location of the devfile. Therefore, this devfile is only loadable by a factory. You supply the location of your devfile to the factory, and then use your devfile to determine the location of the referenced Kubernetes resource list.</p>
 </div>
 <div class="paragraph">
 <p>The following is an example of the <code>postgres.yaml</code> file:</p>
