@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adding attributes to a devfile :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/adding-attributes-to-a-devfile.html">
-    <meta name="description" content="Adding attributes to a devfile">
-    <meta name="keywords" content="authoring, stack, attributes">
+    <title>Devfile registry :: Devfile Documentation</title>
+    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/devfile-registry.html">
+    <meta name="description" content="Devfile Registry">
+    <meta name="keywords" content="devfile">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -36,12 +36,12 @@
   </nav>
   <div class="gcse-searchresults"></div>
 </header><div class="body">
-<div class="nav-container" data-component="devfile" data-version="2.2.0">
+<div class="nav-container" data-component="devfile" data-version="2.1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Devfile User Guide 2.2.0</a></h3>
+    <h3 class="title"><a href="index.html">Devfile User Guide 2.1.0</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -101,7 +101,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="adding-attributes-to-a-devfile.html">Adding attributes</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -145,7 +145,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Registry Administrator</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="devfile-registry.html">Devfile registry</a>
   </li>
 </ul>
@@ -164,17 +164,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Devfile User Guide 2.1.0</span>
-    <span class="version">2.2.0-alpha</span>
+    <span class="version">2.1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../../2.1.0/user-guide/index.html">Devfile User Guide 2.1.0</a>
+      <a class="title" href="index.html">Devfile User Guide 2.1.0</a>
       <ul class="versions">
-        <li class="version is-current">
-          <a href="index.html">2.2.0-alpha</a>
-        </li>
-        <li class="version is-latest">
-          <a href="../../2.1.0/user-guide/index.html">2.1.0</a>
+        <li class="version is-current is-latest">
+          <a href="index.html">2.1.0</a>
         </li>
         <li class="version">
           <a href="../../2.0.0/user-guide/index.html">2.0.0</a>
@@ -189,103 +186,114 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../2.1.0/user-guide/index.html" class="home-link"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
-    <li>Developer</li>
-    <li><a href="authoring-stacks.html">Authoring stacks</a></li>
-    <li><a href="adding-attributes-to-a-devfile.html">Adding attributes</a></li>
+    <li><a href="index.html">Devfile User Guide 2.1.0</a></li>
+    <li>Registry Administrator</li>
+    <li><a href="devfile-registry.html">Devfile registry</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
+  <button class="version-menu-toggle" title="Show other versions of page">2.1.0</button>
   <div class="version-menu">
-    <a class="version is-current" href="adding-attributes-to-a-devfile.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/adding-attributes-to-a-devfile.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/adding-attributes-to-a-devfile.html">2.0.0</a>
+    <a class="version is-current" href="devfile-registry.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/adding-attributes-to-a-devfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/v2.1.x/docs/modules/user-guide/pages/devfile-registry.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Adding attributes to a devfile</h1>
+<h1 class="page">Devfile registry</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph _abstract">
-<p>Use devfile attributes to configure various features and properties according to user and tooling needs. Attributes are implementation-dependent and written in free-form YAML. The following devfile objects can have attributes:</p>
+<p>A devfile registry is a service that stores and provides devfile stacks to Kubernetes developer tools like odo, Eclipse Che, and the OpenShift Developer Console. Therefore, you can access devfiles through the devfile registry.  Devfile registries are based on the Oracle Cloud Infrastructure (OCI) Specification, and devfile stacks are stored as OCI-artifacts in the registry.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>metadata</code></p>
-</li>
-<li>
-<p><code>components</code></p>
-</li>
-<li>
-<p><code>commands</code></p>
-</li>
-<li>
-<p><code>projects</code></p>
-</li>
-<li>
-<p><code>starterProjects</code></p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p><a href="adding-schema-version-to-a-devfile.html" class="page">Adding schema version to a devfile</a></p>
-</li>
-<li>
-<p><a href="adding-a-name-to-a-devfile.html" class="page">Adding a name to a devfile</a></p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Define a custom attribute</p>
 <div class="paragraph">
-<p>When no editor is specified, a default editor is provided. To represent this user-defined example, use the <code>editorFree</code> attribute as shown in the following example:</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 1. A devfile without an editor</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  name: petclinic-dev-environment
-  attributes:
-     editorFree: true
-components:
-  - name: myapp
-    kubernetes:
-      uri: my-app.yaml</code></pre>
+<p>Each devfile stack corresponds to a specific runtime or framework, such as Node.js, Quarkus, or WildFly. A devfile stack also contains resources like a <code>devfile.yaml</code> file, logo, and outer loop resources. Outer loop runs on containers and entails code reviews and integration tests, typically automated by continuous integration/continuous delivery (CI/CD) pipelines. These devfile stacks provide developers with templates to get started developing cloud-native applications.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_devfile_registry_components"><a class="anchor" href="#_devfile_registry_components"></a>Devfile registry components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A devfile registry has two components:</p>
 </div>
-</li>
-</ol>
-</div>
-<div class="ulist _additional-resources">
-<div class="title">Additional resources</div>
+<div class="ulist">
 <ul>
 <li>
-<p><a href="api-reference.html" class="page">API Reference</a></p>
+<p>Devfile index server</p>
 </li>
 <li>
-<p><a href="devfile-resources.html" class="page">Devfile resources</a></p>
+<p>OCI registry server</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<div class="title">Devfile index container</div>
+<p>The devfile index container image does the following actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uses the <code>index.json</code> file to obtain metadata about the stacks and samples and hosts this metadata in the registry for tools to consume.</p>
+</li>
+<li>
+<p>Bootstraps the OCI registry with the devfile stacks.</p>
+</li>
+<li>
+<p>Provides an API to interact with the OCI registry and to retrieve devfile stacks.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">OCI registry</div>
+<p>The devfile stacks in a devfile registry are stored in an OCI-compatible artifact registry. The artifact registry is based on the reference implementation of an OCI registry.</p>
+</div>
+<div class="paragraph">
+<p>When a devfile registry is deployed, the stacks belonging to the devfile registry are pushed to the OCI registry as multi-layer artifacts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_types_of_devfile_registries"><a class="anchor" href="#_types_of_devfile_registries"></a>Types of devfile registries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are multiple types of devfile registries to access devfile stacks and tools.</p>
+</div>
+<div class="paragraph">
+<div class="title">Public community registry</div>
+<p>The public community registry provides stacks for various community tools to consume, such as Node.js, Quarkus, and Open Liberty.</p>
+</div>
+<div class="paragraph">
+<p>Locate the source for the stacks in the public community registry in the <a href="https://github.com/devfile/registry">devfile/registry repository</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">On-cluster devfile registry</div>
+<p>Devfile registries can be operated on private Kubernetes clusters, deployed using either the devfile registry Operator or the devfile registry Helm Chart.</p>
+</div>
+<div class="paragraph">
+<p>The on-cluster devfile registries can be configured with custom devfile stacks suited to the needs of the owner organization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="authoring-stacks.html" class="page">Authoring stacks</a>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
   </div>

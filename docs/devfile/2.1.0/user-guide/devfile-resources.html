@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migrating schema version :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/migrating-schema-version.html">
-    <meta name="description" content="Migrating schema-version">
-    <meta name="keywords" content="migrating, stack, schema-version">
+    <title>Devfile resources :: Devfile Documentation</title>
+    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/devfile-resources.html">
+    <meta name="description" content="Devfile resources">
+    <meta name="keywords" content="devfile, resources">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -36,12 +36,12 @@
   </nav>
   <div class="gcse-searchresults"></div>
 </header><div class="body">
-<div class="nav-container" data-component="devfile" data-version="2.2.0">
+<div class="nav-container" data-component="devfile" data-version="2.1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Devfile User Guide 2.2.0</a></h3>
+    <h3 class="title"><a href="index.html">Devfile User Guide 2.1.0</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -116,7 +116,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="migrating-to-devfile-v2.html">Migrating to devfile v2</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-schema-version.html">Migrating schema version</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -153,7 +153,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="api-reference.html">API reference</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="devfile-resources.html">Devfile resources</a>
   </li>
 </ul>
@@ -164,17 +164,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Devfile User Guide 2.1.0</span>
-    <span class="version">2.2.0-alpha</span>
+    <span class="version">2.1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../../2.1.0/user-guide/index.html">Devfile User Guide 2.1.0</a>
+      <a class="title" href="index.html">Devfile User Guide 2.1.0</a>
       <ul class="versions">
-        <li class="version is-current">
-          <a href="index.html">2.2.0-alpha</a>
-        </li>
-        <li class="version is-latest">
-          <a href="../../2.1.0/user-guide/index.html">2.1.0</a>
+        <li class="version is-current is-latest">
+          <a href="index.html">2.1.0</a>
         </li>
         <li class="version">
           <a href="../../2.0.0/user-guide/index.html">2.0.0</a>
@@ -189,73 +186,37 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../2.1.0/user-guide/index.html" class="home-link"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
-    <li>Developer</li>
-    <li><a href="migrating-to-devfile-v2.html">Migrating to devfile v2</a></li>
-    <li><a href="migrating-schema-version.html">Migrating schema version</a></li>
+    <li><a href="index.html">Devfile User Guide 2.1.0</a></li>
+    <li><a href="devfile-resources.html">Devfile resources</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
+  <button class="version-menu-toggle" title="Show other versions of page">2.1.0</button>
   <div class="version-menu">
-    <a class="version is-current" href="migrating-schema-version.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/migrating-schema-version.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/migrating-schema-version.html">2.0.0</a>
+    <a class="version is-current" href="devfile-resources.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/migrating-schema-version.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/v2.1.x/docs/modules/user-guide/pages/devfile-resources.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migrating schema version</h1>
-<div class="paragraph _abstract">
-<p>This section describes how to migrate the existing schema version to a v2.x devfile.</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>To migrate a schema version from a v1.x devfile to a v2.x devfile, replace <code>apiVersion: 1.0.0</code> with <code>schemaVersion: 2.1.0</code>:</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v1.0
----
-apiVersion: 1.0.0
-metadata:
-  name: devfile-sample</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
----
-schemaVersion: 2.1.0
-metadata:
-  name: devfile-sample</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph _additional-resources">
+<h1 class="page">Devfile resources</h1>
+<div class="paragraph">
 <div class="title">Additional resources</div>
-<p>For more information on migrating schema versions, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/7">schemaVersion attribute</a>.</p>
+<p>To view the source code for the devfile specification, visit the <a href="https://github.com/devfile/api">GitHub API repository</a>.</p>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p>To track the development of the devfile specification, visit the <a href="https://github.com/devfile/api/issues">issue tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To build and contribute to the documentation, visit the <a href="https://github.com/devfile/docs">GitHub Docs repository</a>.</p>
 </div>
 </article>
   </div>
