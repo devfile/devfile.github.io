@@ -213,7 +213,7 @@
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>A parent devfile can be referenced in 3 different ways: <code>registry</code>, <code>uri</code> or <code>kubernetes</code>.</p>
+<p>A parent devfile can be referenced in 3 different ways: <code>id</code>, <code>uri</code> or <code>kubernetes</code>.</p>
 <div class="exampleblock">
 <div class="title">Example 1. Parent referred by registry</div>
 <div class="content">
@@ -226,8 +226,8 @@
 metadata:
   name: my-project-dev
 parent:
-    id: redhat/nodejs/11.6
-    registry: https://devfile-registry.io/</code></pre>
+    id: nodejs
+    registryUrl: https://devfile-registry.io/</code></pre>
 </div>
 </div>
 </div>
@@ -244,7 +244,6 @@ parent:
 metadata:
   name: my-project-dev
 parent:
-    id: redhat/nodejs/11.6
     uri: https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/nodejs/devfile.yaml</code></pre>
 </div>
 </div>
@@ -264,8 +263,7 @@ metadata:
 parent:
     kubernetes:
         name: mydevworkspacetemplate
-        namespace: mynamespace
-        selector: mykey=myvalue</code></pre>
+        namespace: mynamespace</code></pre>
 </div>
 </div>
 </div>
