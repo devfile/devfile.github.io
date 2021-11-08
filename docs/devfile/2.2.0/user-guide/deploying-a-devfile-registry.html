@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migrating schema version :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/migrating-schema-version.html">
-    <meta name="description" content="Migrating schema-version">
-    <meta name="keywords" content="migrating, stack, schema-version">
+    <title>Deploying a devfile registry :: Devfile Documentation</title>
+    <meta name="description" content="Deploying a devfile registry">
+    <meta name="keywords" content="devfile, deploy">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -116,7 +115,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="migrating-to-devfile-v2.html">Migrating to devfile v2</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-schema-version.html">Migrating schema version</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -155,7 +154,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="building-a-custom-devfile-registry.html">Building a custom devfile registry</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="deploying-a-devfile-registry.html">Deploying a devfile registry</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -208,69 +207,211 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
-    <li>Developer</li>
-    <li><a href="migrating-to-devfile-v2.html">Migrating to devfile v2</a></li>
-    <li><a href="migrating-schema-version.html">Migrating schema version</a></li>
+    <li>Registry Administrator</li>
+    <li><a href="devfile-registry.html">Devfile registry</a></li>
+    <li><a href="deploying-a-devfile-registry.html">Deploying a devfile registry</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="migrating-schema-version.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/migrating-schema-version.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/migrating-schema-version.html">2.0.0</a>
+    <a class="version is-current" href="deploying-a-devfile-registry.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/migrating-schema-version.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/deploying-a-devfile-registry.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migrating schema version</h1>
+<h1 class="page">Deploying a devfile registry</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deploy a devfile registry to allow access to the devfile stacks that provide templates for containerized development.</p>
+</div>
+<div class="paragraph">
+<p>To use the devfile Operator to deploy a devfile registry, use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Operator Lifecycle Manager (OLM)</p>
+</li>
+<li>
+<p>Devfile registry Helm chart</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A built devfile registry container image. To build your own devfile registry, see <a href="building-a-custom-devfile-registry.html" class="page">Building a custom devfile registry</a>.</p>
+</li>
+<li>
+<p>If you do not have publicly signed certificates for your cluster, disable TLS for the devfile registry so that you can use the devfile registry with <code>odo</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploying-a-devfile-registry-with-operator-lifecycle-manager_devfile"><a class="anchor" href="#deploying-a-devfile-registry-with-operator-lifecycle-manager_devfile"></a>Deploying a devfile registry with Operator Lifecycle Manager</h2>
+<div class="sectionbody">
 <div class="paragraph _abstract">
-<p>This section describes how to migrate the existing schema version to a v2.x devfile.</p>
+<p>When you have Operator Lifecycle Manager (OLM) installed on your cluster, use the devfile registry Operator to install and deploy a devfile registry.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>To migrate a schema version from a v1.x devfile to a v2.x devfile, replace <code>apiVersion: 1.0.0</code> with <code>schemaVersion: 2.1.0</code>:</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<p>Install the devfile registry Operator:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Install <a href="https://github.com/operator-framework/operator-lifecycle-manager">OLM</a>.</p>
+</li>
+<li>
+<p>Download and install the <a href="https://mirror.openshift.com/pub/openshift-v4/clients/operator-sdk/latest/">operator-sdk CLI</a>.</p>
+</li>
+<li>
+<p>Run the <code>operator-sdk</code> command to install the devfile registry Operator:</p>
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v1.0
----
-apiVersion: 1.0.0
-metadata:
-  name: devfile-sample</code></pre>
+<pre>$ operator-sdk run bundle quay.io/devfile/registry-operator-bundle:next</pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
----
-schemaVersion: 2.1.0
-metadata:
-  name: devfile-sample</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph _additional-resources">
-<div class="title">Additional resources</div>
-<p>For more information on migrating schema versions, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/7">schemaVersion attribute</a>.</p>
 </div>
 </li>
 </ol>
+</div>
+</li>
+<li>
+<p>Deploy the devfile registry:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>On an OpenShift cluster, run:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ cat &lt;&lt;EOF | oc apply -f -
+apiVersion: registry.devfile.io/v1alpha1
+kind: DevfileRegistry
+metadata:
+  name: devfile-registry
+spec:
+  devfileIndexImage: quay.io/devfile/devfile-index:next
+EOF</pre>
+</div>
+</div>
+</li>
+<li>
+<p>On a Kubernetes cluster, run:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: registry.devfile.io/v1alpha1
+kind: DevfileRegistry
+metadata:
+  name: devfile-registry
+spec:
+  devfileIndexImage: quay.io/devfile/devfile-index:next
+ 	tls:
+    enabled: false
+  k8s:
+    ingressDomain: $INGRESS_DOMAIN
+EOF</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Regardless of the cluster, if you are deploying your own devfile registry, change the <code>devfileIndexImage</code> field to the container image that you built.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>For information on installing the devfile registry Operator, see <a href="https://github.com/devfile/registry-operator">devfile registry Operator</a>.</p>
+</li>
+<li>
+<p>For information on installing OLM on your Kubernetes cluster, see the <a href="https://olm.operatorframework.io/docs/getting-started/">OLM quick start guide</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploying-a-devfile-registry-with-helm-chart_devfile"><a class="anchor" href="#deploying-a-devfile-registry-with-helm-chart_devfile"></a>Deploying a devfile registry with Helm chart</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>If the Operator Lifecycle Manager (OLM) is not installed on your Kubernetes cluster, use the devfile registry Helm chart in order to use the devfile registry Operator to deploy the devfile registry.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Clone the repository containing the Helm chart:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ git clone https://github.com/devfile/registry-support</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the <code>deploy/chart/devfile-registry</code> directory.</p>
+</li>
+<li>
+<p>Open the <code>values.yaml</code> file in an editor and make the following changes:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Set <code>devfileIndex.image</code> to the image containing your devfile stacks.</p>
+</li>
+<li>
+<p>Set <code>devfileIndex.tag</code> to the image tag for your devfile index image.</p>
+</li>
+<li>
+<p>If installing on Kubernetes, set <code>global.Ingress.domain</code> to the Ingress domain of your cluster.</p>
+</li>
+<li>
+<p>If installing on OpenShift, set <code>global.isOpenShift</code> to <code>true</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Run <code>helm install devfile-registry ./</code> to install the Helm chart.</p>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>For information on the devfile registry Helm chart, see the <a href="https://github.com/devfile/registry-support/blob/master/deploy/chart/devfile-registry/README.md">registry Helm chart Git repository readme</a>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
   </div>

@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migrating schema version :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/migrating-schema-version.html">
-    <meta name="description" content="Migrating schema-version">
-    <meta name="keywords" content="migrating, stack, schema-version">
+    <title>Understanding a devfile registry :: Devfile Documentation</title>
+    <meta name="description" content="Understanding a devfile registry">
+    <meta name="keywords" content="devfile">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -116,7 +115,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="migrating-to-devfile-v2.html">Migrating to devfile v2</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-schema-version.html">Migrating schema version</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -149,7 +148,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="devfile-registry.html">Devfile registry</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="understanding-a-devfile-registry.html">Understanding a devfile registry</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -208,69 +207,112 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
-    <li>Developer</li>
-    <li><a href="migrating-to-devfile-v2.html">Migrating to devfile v2</a></li>
-    <li><a href="migrating-schema-version.html">Migrating schema version</a></li>
+    <li>Registry Administrator</li>
+    <li><a href="devfile-registry.html">Devfile registry</a></li>
+    <li><a href="understanding-a-devfile-registry.html">Understanding a devfile registry</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="migrating-schema-version.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/migrating-schema-version.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/migrating-schema-version.html">2.0.0</a>
+    <a class="version is-current" href="understanding-a-devfile-registry.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/migrating-schema-version.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/understanding-a-devfile-registry.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migrating schema version</h1>
+<h1 class="page">Understanding a devfile registry</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph _abstract">
-<p>This section describes how to migrate the existing schema version to a v2.x devfile.</p>
+<p>A devfile registry is a service that stores and provides devfile stacks to Kubernetes developer tools like <code>odo</code>, Eclipse Che, and the OpenShift Developer Console. Therefore, you can access devfiles through the devfile registry.  Devfile registries are based on the Oracle Cloud Infrastructure (OCI) Specification, and devfile stacks are stored as OCI artifacts in the registry.</p>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
+<div class="paragraph">
+<p>Each devfile stack corresponds to a specific runtime or framework, such as Node.js, Quarkus, or WildFly. A devfile stack also contains resources like a <code>devfile.yaml</code> file, logo, and outer loop resources. Outer loop runs on containers and entails code reviews and integration tests, typically automated by continuous integration/continuous delivery (CI/CD) pipelines. These devfile stacks provide developers with templates to get started developing cloud-native applications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_devfile_registry_components"><a class="anchor" href="#_devfile_registry_components"></a>Devfile registry components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A devfile registry has two components:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>To migrate a schema version from a v1.x devfile to a v2.x devfile, replace <code>apiVersion: 1.0.0</code> with <code>schemaVersion: 2.1.0</code>:</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v1.0
----
-apiVersion: 1.0.0
-metadata:
-  name: devfile-sample</code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
----
-schemaVersion: 2.1.0
-metadata:
-  name: devfile-sample</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph _additional-resources">
-<div class="title">Additional resources</div>
-<p>For more information on migrating schema versions, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/7">schemaVersion attribute</a>.</p>
-</div>
+<p>Devfile index server</p>
 </li>
-</ol>
+<li>
+<p>OCI registry server</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Devfile index container</div>
+<p>The devfile index container image does the following actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uses the <code>index.json</code> file to obtain metadata about the stacks and samples and hosts this metadata in the registry for tools to consume.</p>
+</li>
+<li>
+<p>Bootstraps the OCI registry with the devfile stacks.</p>
+</li>
+<li>
+<p>Provides an API to interact with the OCI registry and to retrieve devfile stacks.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">OCI registry</div>
+<p>The devfile stacks in a devfile registry are stored in an OCI-compatible artifact registry. The artifact registry is based on the reference implementation of an OCI registry.</p>
+</div>
+<div class="paragraph">
+<p>When a devfile registry is deployed, the stacks belonging to the devfile registry are pushed to the OCI registry as multi-layer artifacts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_types_of_devfile_registries"><a class="anchor" href="#_types_of_devfile_registries"></a>Types of devfile registries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are multiple types of devfile registries to access devfile stacks and tools.</p>
+</div>
+<div class="paragraph">
+<div class="title">Public community registry</div>
+<p>The public community registry provides stacks for various community tools to consume, such as Node.js, Quarkus, and Open Liberty.</p>
+</div>
+<div class="paragraph">
+<p>Locate the source for the stacks in the public community registry in the <a href="https://github.com/devfile/registry">devfile/registry repository</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">On-cluster devfile registry</div>
+<p>Devfile registries can be operated on private Kubernetes clusters, deployed using either the devfile registry Operator or the devfile registry Helm Chart.</p>
+</div>
+<div class="paragraph">
+<p>The on-cluster devfile registries can be configured with custom devfile stacks suited to the needs of the owner organization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="building-a-custom-devfile-registry.html" class="page">Building a custom devfile registry</a>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
   </div>
