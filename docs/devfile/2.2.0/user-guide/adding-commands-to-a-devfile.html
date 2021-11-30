@@ -72,7 +72,25 @@
     <a class="nav-link" href="adding-projects-to-a-devfile.html">Adding projects</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="adding-commands-to-a-devfile.html">Adding commands</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="devfile-commands.html">Devfile commands</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="adding-a-command-section-to-a-devfile.html">Adding a command section to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="adding-a-command-group-to-a-devfile.html">Adding a command group to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="adding-exec-commands-to-a-devfile.html">Adding exec commands to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="adding-composite-commands-to-a-devfile.html">Adding composite commands to a devfile</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
@@ -230,385 +248,26 @@
 <article class="doc">
 <h1 class="page">Adding commands to a devfile</h1>
 <div class="paragraph _abstract">
-<p>A devfile allows you to specify commands to be available for execution in a workspace. Every command can contain a subset of actions. These subsets are related to specific components and are executed in the component containers. See the following tables for command properties in a devfile:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. commandObject</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">exec</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">execObject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The exec command to run.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">composite</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">compositeObject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The composite command to run.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. execObject</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The ID of the command.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">commandLine</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The command to run.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The component to which the action relates.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">label</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The optional label to describe the command.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">workingDir</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The working directory where you execute the command.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">groupObject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The group to which the command belongs.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">environment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">envObject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The list of environment variables you use.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. compositeObject</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The ID of the command.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">commands</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The exec commands that constitute the composite command and chains multiple commands together.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">parallel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The flag that indicates if commands are executed in parallel.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">label</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The optional label to describe the command.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">groupObject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The group to which the composite command belongs. The composite command cannot be of the <code>run</code> kind.</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. groupObject</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">kind</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The group to which the command belongs, such as: <code>build</code>, <code>run</code>, <code>test</code>, and <code>debug</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">isDefault</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies if it is the default command to run. Only one default command can be defined for each group.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p><a href="adding-schema-version-to-a-devfile.html" class="page">Adding schema version to a devfile</a></p>
-</li>
-<li>
-<p><a href="adding-a-name-to-a-devfile.html" class="page">Adding a name to a devfile</a></p>
-</li>
-<li>
-<p><a href="adding-projects-to-a-devfile.html" class="page">Adding projects to a devfile</a></p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Add a <code>commands</code> section in the devfile, containing a list of one or more commands.</p>
-</li>
-<li>
-<p>For each command, define an unique value for the mandatory <code>id</code> attribute.</p>
-</li>
-<li>
-<p>For each command, define a mandatory type of one of the following types:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>exec</code></p>
-</li>
-<li>
-<p><code>apply</code></p>
-</li>
-<li>
-<p><code>composite</code></p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Sample command</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"> commands:
-   - id: build
-     exec:
-      component: mysql
-      commandLine: mvn clean
-      workingDir: /projects/spring-petclinic</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Define attributes for the <code>exec</code> command to run using the default shell in the container.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>A <code>commandLine</code> attribute that is a command to execute.</p>
-</li>
-<li>
-<p>A <code>component</code> attribute that specifies the container in which to execute the command.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  name: mydevfile
-projects:
-  - name: my-go-project
-    clonePath: go/src/github.com/acme/my-go-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-go-project.git"
-components:
-  - name: go-cli
-    container:
-      image: golang
-      memoryLimit: 512Mi
-      mountSources: true
-      command: ['sleep', 'infinity']
-      env:
-        - name: GOPATH
-          value: $(PROJECTS_ROOT)/go
-        - name: GOCACHE
-          value: /tmp/go-cache
-commands:
-  - id: compile and run
-    exec:
-      component: go-cli
-      commandLine: "go get -d &amp;&amp; go run main.go"
-      workingDir: "${PROJECTS_ROOT}/src/github.com/acme/my-go-project"</code></pre>
-</div>
-</div>
-<div class="ulist NOTE">
-<ul class="NOTE">
-<li>
-<p>A command can have only one action, though you can use <code>composite</code> commands to execute several commands either sequentially or in parallel.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Command group</p>
-<div class="paragraph">
-<p>To assign a given command to one or more groups that represent the nature of the command, use the following supported group types:</p>
+<p>You can use a devfile to specify commands to run in a workspace. Every command can contain a subset of actions. The actions in each subset are related to a specific component and run in the containers for that component.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>build</code></p>
+<p><a href="devfile-commands.html" class="page">Devfile commands</a></p>
 </li>
 <li>
-<p><code>run</code></p>
+<p><a href="adding-a-command-section-to-a-devfile.html" class="page">Adding a command section to a devfile</a></p>
 </li>
 <li>
-<p><code>test</code></p>
+<p><a href="adding-a-command-group-to-a-devfile.html" class="page">Adding a command group to a devfile</a></p>
 </li>
 <li>
-<p><code>debug</code></p>
-<div class="paragraph">
-<p>For each of the groups, define one default command by specifying the <code>isDefault</code> value.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  name: mydevfile
-projects:
-  - name: my-maven-project
-    clonePath: maven/src/github.com/acme/my-maven-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-maven-project.git"
-components:
-  - name: maven
-    container:
-      image: eclipse/maven-jdk8:latest
-      mountSources: true
-      command: ['tail']
-commands:
-  - id: package
-    exec:
-      component: maven
-      commandLine: "mvn package"
-      group:
-        kind: build
-  - id: install
-    exec:
-      component: maven
-      commandLine: "mvn install"
-      group:
-        kind: build
-        isDefault: true</code></pre>
-</div>
-</div>
+<p><a href="adding-exec-commands-to-a-devfile.html" class="page">Adding exec commands to a devfile</a></p>
+</li>
+<li>
+<p><a href="adding-composite-commands-to-a-devfile.html" class="page">Adding composite commands to a devfile</a></p>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p>Composite command</p>
-<div class="paragraph">
-<p>To chain multiple commands together, define a composite command. To reference the individual commands that are called from a composite command, use the <code>name</code> of the command. To specify whether commands within a composite command are to be executed sequentially or in parallel, define the <code>parallel</code> boolean.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  name: mydevfile
-projects:
-  - name: my-maven-project
-    clonePath: maven/src/github.com/acme/my-maven-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-maven-project.git"
-components:
-  - name: maven
-    container:
-      image: eclipse/maven-jdk8:latest
-      mountSources: true
-      command: ['tail']
-commands:
-  - id: package
-    exec:
-      component: maven
-      commandLine: "mvn package"
-      group:
-        kind: build
-  - id: install
-    exec:
-      component: maven
-      commandLine: "mvn install"
-      group:
-        kind: build
-        isDefault: true
-  - id: installandpackage
-    composite:
-      commands:
-        - install
-        - package
-      parallel: false</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>

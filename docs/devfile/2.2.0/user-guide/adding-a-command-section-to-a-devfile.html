@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Limiting resources usage :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/limiting-resources-usage.html">
-    <meta name="description" content="Limiting resources usage">
-    <meta name="keywords" content="authoring, stack, components">
+    <title>Adding a command section to a devfile :: Devfile Documentation</title>
+    <meta name="description" content="Adding a command section to a devfile">
+    <meta name="keywords" content="command, devfile">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -78,7 +77,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="devfile-commands.html">Devfile commands</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="adding-a-command-section-to-a-devfile.html">Adding a command section to a devfile</a>
   </li>
   <li class="nav-item" data-depth="4">
@@ -105,7 +104,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="specifying-persistent-storage.html">Specifying persistent storage</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="limiting-resources-usage.html">Limiting resources usage</a>
   </li>
   <li class="nav-item" data-depth="4">
@@ -228,84 +227,77 @@
     <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
     <li>Developer</li>
     <li><a href="authoring-stacks.html">Authoring stacks</a></li>
-    <li><a href="adding-components-to-a-devfile.html">Adding components</a></li>
-    <li><a href="limiting-resources-usage.html">Limiting resources usage</a></li>
+    <li><a href="adding-commands-to-a-devfile.html">Adding commands</a></li>
+    <li><a href="adding-a-command-section-to-a-devfile.html">Adding a command section to a devfile</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="limiting-resources-usage.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/limiting-resources-usage.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/limiting-resources-usage.html">2.0.0</a>
+    <a class="version is-current" href="adding-a-command-section-to-a-devfile.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/limiting-resources-usage.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/adding-a-command-section-to-a-devfile.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Limiting resources usage</h1>
-<div class="paragraph _abstract">
-<p>This section describes how to limit resource use in devfiles.</p>
+<h1 class="page">Adding a command section to a devfile</h1>
+<div class="paragraph">
+<p>Specify the commands you want to run in your workspace.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p><a href="adding-schema-version-to-a-devfile.html" class="page">Adding schema version to a devfile</a></p>
+</li>
+<li>
+<p><a href="adding-a-name-to-a-devfile.html" class="page">Adding a name to a devfile</a></p>
+</li>
+<li>
+<p><a href="adding-projects-to-a-devfile.html" class="page">Adding projects to a devfile</a></p>
+</li>
+</ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Specify container memory limit and memory request for components</p>
-<div class="paragraph">
-<p>To specify a container memory limit for <code>container</code>, use the <code>memoryLimit</code> parameter. To specify a container memory request, use the <code>memoryRequest</code> parameter:</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 1. Specify container memory limit and memory request for components</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
-   - name: maven
-     container:
-      image: eclipse/maven-jdk8:latest
-      memoryLimit: 512M
-      memoryRequest: 256M</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This limit applies to every container of the given component.</p>
-</div>
-<div class="paragraph">
-<p>When not specified, the values may or may not be inferred from the application that consumes the devfile or from the underlying platform (for example, Kubernetes).</p>
-</div>
+<p>Add a <code>commands</code> section to a devfile that contains a list of one or more commands.</p>
 </li>
 <li>
-<p>Specify container CPU limit and container CPU request for components</p>
-<div class="paragraph">
-<p>To specify a container CPU limit for <code>container</code>, use the <code>cpuLimit</code> parameter. To specify a container CPU request for <code>container</code>, use the <code>cpuRequest</code> parameter:</p>
+<p>For each command, define a unique value for the mandatory <code>id</code> attribute.</p>
+</li>
+<li>
+<p>For each command, define a mandatory kind of one of the following kinds:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>exec</code></p>
+</li>
+<li>
+<p><code>apply</code></p>
+</li>
+<li>
+<p><code>composite</code></p>
+</li>
+</ul>
 </div>
-<div class="exampleblock">
-<div class="title">Example 2. Specify container CPU limit and CPU request for components</div>
-<div class="content">
 <div class="listingblock">
+<div class="title">Sample command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  components:
-   - name: maven
-     container:
-      image: eclipse/maven-jdk8:latest
-      cpuLimit: 750m
-      cpuRequest: 450m</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"> commands:
+   - id: build
+     exec:
+      component: mysql
+      commandLine: mvn clean
+      workingDir: /projects/spring-petclinic</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This limit applies to every container of the given component.</p>
-</div>
-<div class="paragraph">
-<p>When not specified, the values may or may not be inferred from the application that consumes the devfile or from the underlying platform (for example, Kubernetes).</p>
 </div>
 </li>
 </ol>
