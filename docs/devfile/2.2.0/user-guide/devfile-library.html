@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migrating projects :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/migrating-projects.html">
-    <meta name="description" content="Migrating projects">
-    <meta name="keywords" content="migrating, stack, projects">
+    <title>Devfile library :: Devfile Documentation</title>
+    <meta name="description" content="Devfile library">
+    <meta name="keywords" content="devfile, library">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -137,7 +136,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-schema-version.html">Migrating schema version</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-projects.html">Migrating projects</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -157,7 +156,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="devfile-library.html">Devfile library</a>
 <ul class="nav-list">
@@ -236,52 +235,75 @@
   <ul>
     <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
     <li>Developer</li>
-    <li><a href="migrating-to-devfile-v2.html">Migrating to devfile v2</a></li>
-    <li><a href="migrating-projects.html">Migrating projects</a></li>
+    <li><a href="devfile-library.html">Devfile library</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="migrating-projects.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/migrating-projects.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/migrating-projects.html">2.0.0</a>
+    <a class="version is-current" href="devfile-library.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/migrating-projects.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/devfile-library.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migrating projects</h1>
+<h1 class="page">Devfile library</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph _abstract">
-<p>This section describes how to migrate projects to v2.x devfiles.</p>
+<p>Using the devfile library, you can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Validate a devfile.</p>
+</li>
+<li>
+<p>Parse a <code>devfile.yaml</code> file as specified by the devfile API reference.</p>
+</li>
+<li>
+<p>Write updated data to a <code>devfile.yaml</code> file.</p>
+</li>
+<li>
+<p>Generate Kubernetes objects for various devfile resources.</p>
+</li>
+<li>
+<p>Define the <code>util</code> functions for the devfile.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<div class="title">Procedure</div>
-<p>A new <code>starterProject</code> project type can be defined in v2.x devfiles. Pick only one <code>starterProject</code> and use it in interactive mode. With a <code>starterProject</code>, you only need to copy your source code, so you no longer need to clone your Git repository.</p>
+<p>The library is written in Golang, and the following projects consume the library as a Golang dependency:</p>
 </div>
-<div class="exampleblock">
-<div class="title">Example 1. starterProjects and projects description</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
----
-starterProjects:
-  - name: "kafka-project"
-    description: "Use this app to get a nodejs application for working with kafka"
-  - name: "simple-project"
-    description: "Use this app to get a simple "hello world" nodejs application"</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p>Odo</p>
+</li>
+<li>
+<p>OpenShift Console</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_additional_resources"><a class="anchor" href="#_additional_resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="using-the-devfile-library.html" class="page">Using the devfile library</a></p>
+</li>
+</ul>
 </div>
-<div class="paragraph _additional-resources">
-<div class="title">Additional resources</div>
-<p>For more information on migrating projects, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/42">starterProjects</a>.</p>
+</div>
 </div>
 </article>
   </div>

@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migrating projects :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/migrating-projects.html">
-    <meta name="description" content="Migrating projects">
-    <meta name="keywords" content="migrating, stack, projects">
+    <title>Using the devfile library :: Devfile Documentation</title>
+    <meta name="description" content="Using the devfile library">
+    <meta name="keywords" content="devfile, library">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -137,7 +136,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-schema-version.html">Migrating schema version</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="migrating-projects.html">Migrating projects</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -161,7 +160,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="devfile-library.html">Devfile library</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="using-the-devfile-library.html">Using the devfile library</a>
   </li>
 </ul>
@@ -236,52 +235,214 @@
   <ul>
     <li><a href="index.html">Devfile User Guide 2.2.0</a></li>
     <li>Developer</li>
-    <li><a href="migrating-to-devfile-v2.html">Migrating to devfile v2</a></li>
-    <li><a href="migrating-projects.html">Migrating projects</a></li>
+    <li><a href="devfile-library.html">Devfile library</a></li>
+    <li><a href="using-the-devfile-library.html">Using the devfile library</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="migrating-projects.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/migrating-projects.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/migrating-projects.html">2.0.0</a>
+    <a class="version is-current" href="using-the-devfile-library.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/migrating-projects.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/using-the-devfile-library.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migrating projects</h1>
+<h1 class="page">Using the devfile library</h1>
 <div class="paragraph _abstract">
-<p>This section describes how to migrate projects to v2.x devfiles.</p>
+<p>Using the devfile library, you can parse and write any devfile, helping you maintain consistent development environments and making it easier for teams to collaborate across shared projects.</p>
 </div>
-<div class="paragraph">
+<div class="ulist">
 <div class="title">Procedure</div>
-<p>A new <code>starterProject</code> project type can be defined in v2.x devfiles. Pick only one <code>starterProject</code> and use it in interactive mode. With a <code>starterProject</code>, you only need to copy your source code, so you no longer need to clone your Git repository.</p>
+<ul>
+<li>
+<p>Parse a devfile by running:</p>
+</li>
+</ul>
 </div>
 <div class="exampleblock">
-<div class="title">Example 1. starterProjects and projects description</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">v2.0
----
-starterProjects:
-  - name: "kafka-project"
-    description: "Use this app to get a nodejs application for working with kafka"
-  - name: "simple-project"
-    description: "Use this app to get a simple "hello world" nodejs application"</code></pre>
+<pre>// ParserArgs is the struct to pass into parser functions which contains required info for parsing devfile.
+parserArgs := parser.ParserArgs{
+ 	Path:              path,
+ 	FlattenedDevfile:  &amp;flattenedDevfile,
+ 	RegistryURLs:      registryURLs,
+ 	DefaultNamespace:  defaultNamespace,
+ 	Context:           context,
+ 	K8sClient:         client,
+ }
+
+// Parses the devfile and validates the devfile data
+// if top-level variables are not substituted successfully, the warnings can be logged by parsing variableWarning
+devfile, variableWarning, err := devfilePkg.ParseDevfileAndValidate(parserArgs)</pre>
 </div>
 </div>
 </div>
 </div>
-<div class="paragraph _additional-resources">
-<div class="title">Additional resources</div>
-<p>For more information on migrating projects, go to the following GitHub issue: <a href="https://github.com/devfile/api/issues/42">starterProjects</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Get specific content from a devfile by running:</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>// To get all the components from the devfile
+components, err := devfile.Data.GetComponents(DevfileOptions{})
+
+// To get all the components from the devfile with attributes tagged - tool: console-import
+// &amp; import: {strategy: Dockerfile}
+components, err := devfile.Data.GetComponents(DevfileOptions{
+   Filter: map[string]interface{}{
+ 		"tool": "console-import",
+ 		"import": map[string]interface{}{
+ 			"strategy": "Dockerfile",
+ 		},
+ 	},
+})
+
+// To get all the volume components
+components, err := devfile.Data.GetComponents(DevfileOptions{
+ 	ComponentOptions: ComponentOptions{
+ 		ComponentType: v1.VolumeComponentType,
+ 	},
+})
+
+// To get all the exec commands that belong to the build group
+commands, err := devfile.Data.GetCommands(DevfileOptions{
+ 	CommandOptions: CommandOptions{
+ 		CommandType: v1.ExecCommandType,
+ 		CommandGroupKind: v1.BuildCommandGroupKind,
+ 	},
+})</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the Kubernetes objects from the devfile by running:</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre> // To get a slice of Kubernetes containers of type corev1.Container from the devfile component containers
+ containers, err := generator.GetContainers(devfile)
+
+ // To generate a Kubernetes deployment of type v1.Deployment
+ deployParams := generator.DeploymentParams{
+ 	TypeMeta:          generator.GetTypeMeta(deploymentKind, deploymentAPIVersion),
+ 	ObjectMeta:        generator.GetObjectMeta(name, namespace, labels, annotations),
+ 	InitContainers:    initContainers,
+ 	Containers:        containers,
+ 	Volumes:           volumes,
+ 	PodSelectorLabels: labels,
+ }
+ deployment := generator.GetDeployment(deployParams)</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Update the devfile content by running:</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>// To update an existing component in the devfile object
+err := devfile.Data.UpdateComponent(v1.Component{
+	    Name: "component1",
+	    ComponentUnion: v1.ComponentUnion{
+	    	Container: &amp;v1.ContainerComponent{
+	    		Container: v1.Container{
+	    			Image: "image1",
+             },
+         },
+     },
+})
+
+// To add a new component to the devfile object
+err := devfile.Data.AddComponents([]v1.Component{
+     {
+        Name: "component2",
+        ComponentUnion: v1.ComponentUnion{
+            Container: &amp;v1.ContainerComponent{
+                Container: v1.Container{
+                    Image: "image2",
+                },
+            },
+        },
+     },
+})
+
+// To delete a component from the devfile object
+err := devfile.Data.DeleteComponent(componentName)</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Write a devfile by running:</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>// If the devfile object has been created with the devfile path already set, can simply call WriteYamlDevfile to write the devfile
+err := devfile.WriteYamlDevfile()
+
+
+// To write to a devfile from scratch
+// create a new DevfileData with a specific devfile version
+devfileData, err := data.NewDevfileData(devfileVersion)
+
+// set schema version
+devfileData.SetSchemaVersion(devfileVersion)
+
+// To add devfile content, use library APIs
+devfileData.AddComponents([]v1.Component{...})
+devfileData.AddCommands([]v1.Commands{...})
+......
+
+// create a new DevfileCtx
+ctx := devfileCtx.NewDevfileCtx(devfilePath)
+err = ctx.SetAbsPath()
+
+// create devfile object with the new DevfileCtx and DevfileData
+devfile := parser.DevfileObj{
+ 	Ctx:  ctx,
+ 	Data: devfileData,
+}
+
+// write to the devfile on disk
+err = devfile.WriteYamlDevfile()</pre>
+</div>
+</div>
+</div>
 </div>
 </article>
   </div>
