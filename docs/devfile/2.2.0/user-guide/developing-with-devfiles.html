@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Defining Kubernetes resources :: Devfile Documentation</title>
-    <link rel="canonical" href="https://docs.devfile.io/devfile/2.1.0/user-guide/defining-kubernetes-resources.html">
-    <meta name="description" content="Defining Kubernetes resources">
-    <meta name="keywords" content="authoring, stack, components">
+    <title>Developing with devfiles :: Devfile Documentation</title>
+    <meta name="description" content="Developing with devfiles">
+    <meta name="keywords" content="developing, devfiles">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/extra.css">
@@ -53,7 +52,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Developer</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="developing-with-devfiles.html">Developing with devfiles</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -118,7 +117,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="defining-endpoints.html">Defining endpoints</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="defining-kubernetes-resources.html">Defining Kubernetes resources</a>
   </li>
 </ul>
@@ -240,168 +239,98 @@
   <ul>
     <li><a href="index.html">Devfile User Guide</a></li>
     <li>Developer</li>
-    <li><a href="authoring-devfiles.html">Authoring devfiles</a></li>
-    <li><a href="adding-components-to-a-devfile.html">Adding components</a></li>
-    <li><a href="defining-kubernetes-resources.html">Defining Kubernetes resources</a></li>
+    <li><a href="developing-with-devfiles.html">Developing with devfiles</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
-    <a class="version is-current" href="defining-kubernetes-resources.html">2.2.0-alpha</a>
-    <a class="version" href="../../2.1.0/user-guide/defining-kubernetes-resources.html">2.1.0</a>
-    <a class="version" href="../../2.0.0/user-guide/defining-kubernetes-resources.html">2.0.0</a>
+    <a class="version is-current" href="developing-with-devfiles.html">2.2.0-alpha</a>
+    <a class="version is-missing" href="../../2.1.0/user-guide/index.html">2.1.0</a>
+    <a class="version is-missing" href="../../2.0.0/user-guide/index.html">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/defining-kubernetes-resources.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/master/docs/modules/user-guide/pages/developing-with-devfiles.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Defining Kubernetes resources</h1>
-<div class="paragraph _abstract">
-<p>This section explains how to reference Kubernetes or OpenShift resource lists in devfiles in order to describe complex deployments.</p>
+<h1 class="page">Developing with devfiles</h1>
+<div class="paragraph">
+<p>Use the devfile specification to develop a Node.js “Hello World” application. Developing this application introduces you to how a devfile automates and simplifies your development process.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p>To make developing with the devfile specification easier, consider doing the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a> to create a Kubernetes cluster on your local machine.</p>
+</li>
+<li>
+<p>Download <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/">kubectl</a> to access your namespace.</p>
+</li>
+<li>
+<p>Enable <a href="https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/">ingress on minikube</a> to access your devfile project.</p>
+</li>
+<li>
+<p>Install the <a href="https://access.redhat.com/documentation/en-us/openshift_container_platform/4.6/html/cli_tools/developer-cli-odo#installing-odo">odo command line interface (CLI) tool</a> to execute the devfile specification.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
 <div class="title">Procedure</div>
-<div class="ulist">
-<ul>
+<ol class="arabic">
 <li>
-<p>Because a devfile is internally represented as a single deployment, all resources from the Kubernetes or OpenShift list merge into that single deployment.</p>
-</li>
-<li>
-<p>Avoid name conflicts when designing such lists.</p>
-</li>
-<li>
-<p>When running devfiles on a Kubernetes cluster, only Kubernetes lists are supported. When running devfiles on an OpenShift cluster, both Kubernetes and OpenShift lists are supported:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>deployments</code></p>
-</li>
-<li>
-<p><code>pods</code></p>
-</li>
-<li>
-<p><code>services</code></p>
-</li>
-<li>
-<p><code>persistent volume claims</code></p>
-</li>
-<li>
-<p><code>secrets</code></p>
-</li>
-<li>
-<p><code>config maps</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Kubernetes Ingresses are ignored, but OpenShift routes are supported. A workspace created from a devfile using any other object types fails to start.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>When running devfiles on a Kubernetes cluster, only Kubernetes lists are supported. When running devfiles on an OpenShift cluster, both Kubernetes and OpenShift lists are supported.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following component references a file that is relative to the location of the devfile:</p>
-</div>
+<p>View the available devfiles:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
-metadata:
-  name: mydevfile
-projects:
-  - name: my-go-project
-    clonePath: go/src/github.com/acme/my-go-project
-    git:
-      remotes:
-        origin: "https://github.com/acme/my-go-project.git"
-components:
-  - name: mydevfile
-    kubernetes:
-      uri: ../relative/path/postgres.yaml</code></pre>
+<pre>$ odo catalog list components</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The following is an example of the <code>postgres.yaml</code> file:</p>
+</li>
+<li>
+<p>Run <code>odo create nodejs <em>&lt;name of your project&gt;</em> --starter</code> to create a devfile project.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the <code>--starter</code> parameter to include the starter project currently inside the Node.js devfile specification, which makes it easier for you to develop an application.</p>
+</li>
+</ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: List
-items:
-  - apiVersion: v1
-    kind: Deployment
-    metadata:
-      name: postgres
-      labels:
-        app: postgres
-    spec:
-      template:
-        metadata:
-          name: postgres
-          app:
-            name: postgres
-        spec:
-          containers:
-            - image: postgres
-              name: postgres
-              ports:
-                - name: postgres
-                  containerPort: 5432
-                  volumeMounts:
-                    - name: pg-storage
-                      mountPath: /var/lib/postgresql/data
-          volumes:
-            - name: pg-storage
-              persistentVolumeClaim:
-                claimName: pg-storage
-  - apiVersion: v1
-    kind: Service
-    metadata:
-      name: postgres
-      labels:
-        app: postgres
-        name: postgres
-    spec:
-      ports:
-        - port: 5432
-          targetPort: 5432
-  - apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      name: pg-storage
-      labels:
-        app: postgres
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 1Gi</code></pre>
+</li>
+<li>
+<p>Run <code>minikube IP</code> to find your cluster IP address.</p>
+</li>
+<li>
+<p>Run <code>odo url create <em>&lt;name you give the url&gt;</em> --ingress --host <em>&lt;IP address&gt;</em>.nip.io</code>. Doing so creates an ingress inside your cluster that you can use to access your application using the cluster IP address.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Example: <code>odo url create myfirstproject --ingress --host 192.168.64.2.nip.io</code>.</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>Run <code>odo push</code> to build the URL.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>To verify that you built your Node.js "Hello World" application successfully, view the application in a web browser by copying and pasting the URL that was produced by running the <code>odo push</code> command. Go to the URL and view your "Hello World" application.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>For a basic example of a devfile with an associated Kubernetes or OpenShift list, see <a href="https://github.com/redhat-developer/devfile/tree/master/samples/web-nodejs-with-db-sample">web-nodejs-with-db-sample</a>.</p>
+<div class="title">Additional resources</div>
+<p>To continue working with devfiles, go to <a href="authoring-devfiles.html" class="xref page">Authoring devfiles</a>.</p>
 </div>
 </article>
   </div>
