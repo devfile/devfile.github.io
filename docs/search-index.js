@@ -1,0 +1,1 @@
+initSearch(lunr, {"index":{"version":"2.3.9","fields":["title","name","text","component"],"fieldVectors":[],"invertedIndex":[],"pipeline":["stemmer"]},"store":{}})
