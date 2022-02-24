@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adding event bindings :: Devfile documentation</title>
-    <link rel="canonical" href="https://devfile.io/docs/devfile/2.1.0/user-guide/adding-event-bindings/">
-    <meta name="description" content="Adding event bindings">
-    <meta name="keywords" content="migrating, stack, adding-event-bindings">
+    <title>Adding a volume component to a devfile :: Devfile documentation</title>
+    <meta name="description" content="Adding a volume component to a devfile">
+    <meta name="keywords" content="authoring, stack, components, volume">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="stylesheet" href="../../../../_/css/extra.css">
@@ -105,8 +104,8 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-container-component-to-a-devfile/">Adding a container component</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../adding-a-volume-component-to-a-devfile/">Adding a volume component</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="./">Adding a volume component</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../specifying-persistent-storage/">Specifying persistent storage</a>
@@ -128,8 +127,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../adding-attributes-to-a-devfile/">Adding attributes</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Adding event bindings</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../adding-event-bindings/">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../referring-to-a-parent-devfile-in-a-devfile/">Referring to a parent</a>
@@ -155,8 +154,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../migrating-commands/">Migrating commands</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Adding event bindings</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../adding-event-bindings/">Adding event bindings</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../referring-to-a-parent-devfile-in-a-devfile/">Referring to a parent</a>
@@ -243,132 +242,105 @@
     <li><a href="../">Devfile User Guide</a></li>
     <li>Developer</li>
     <li><a href="../authoring-devfiles/">Authoring devfiles</a></li>
-    <li><a href="./">Adding event bindings</a></li>
+    <li><a href="../adding-components-to-a-devfile/">Adding components</a></li>
+    <li><a href="./">Adding a volume component</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
     <a class="version is-current" href="./">2.2.0-alpha</a>
-    <a class="version" href="../../../2.1.0/user-guide/adding-event-bindings/">2.1.0</a>
-    <a class="version" href="../../../2.0.0/user-guide/adding-event-bindings/">2.0.0</a>
+    <a class="version is-missing" href="../../../2.1.0/user-guide/">2.1.0</a>
+    <a class="version is-missing" href="../../../2.0.0/user-guide/">2.0.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/main/docs/modules/user-guide/pages/adding-event-bindings.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/main/docs/modules/user-guide/pages/adding-a-volume-component-to-a-devfile.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Adding event bindings</h1>
+<h1 class="page">Adding a volume component to a devfile</h1>
 <div class="paragraph _abstract">
-<p>This section describes how to add an event to a v2.x devfile. An event can have three different type of objects:</p>
+<p>You can use a <code>volume</code> component to share files among container components and collaborate with other teams during the development process.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
 <li>
-<p>preStartObject</p>
+<p><a href="../adding-schema-version-to-a-devfile/" class="xref page">Adding schema version to a devfile</a></p>
 </li>
 <li>
-<p>postStartObject</p>
+<p><a href="../adding-a-name-to-a-devfile/" class="xref page">Adding a name to a devfile</a></p>
 </li>
 <li>
-<p>preStopObject</p>
+<p><a href="../adding-components-to-a-devfile/" class="xref page">Adding components to a devfile</a></p>
 </li>
-</ol>
+</ul>
 </div>
-<div class="paragraph">
-<div class="title">preStartObject</div>
-<p>You can execute preStart events as init containers for the project pod in the order you specify the preStart events. The devfile <code>commandLine</code> and <code>workingDir</code> are the commands for the init container. As a result, the init container overwrites either the devfile or the container image <code>command</code> and <code>args</code>. If you use a composite command with <code>parallel: true</code>, the composite command executes as Kubernetes init containers.</p>
-</div>
-<div class="paragraph">
-<div class="title">postStartObject</div>
-<p>When you create the Kubernetes deployment for the <code>odo</code> component, execute the postStart events.</p>
-</div>
-<div class="paragraph">
-<div class="title">preStopObject</div>
-<p>Before you delete the Kubernetes deployment for the <code>odo</code> component, execute the preStop events.</p>
-</div>
-<div class="paragraph">
-<p>See the following list for event properties in a devfile:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. envObject</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the environment variable.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The value of the environment variable.</p></td>
-</tr>
-</tbody>
-</table>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Add an <code>events</code> section in the devfile, containing a list of <code>preStart</code> and <code>postStart</code> commands.</p>
+<p>Add a <code>volume</code> component and specify the size of it.</p>
+<div class="listingblock">
+<div class="title">Minimal <code>volume</code> example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+metadata:
+    name: mydevfile
+components:
+  - name: mydevfile
+    volume:
+      size: 200G</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you do not want your <code>volume</code> component to persist across restarts, specify it as ephemeral.</p>
+<div class="listingblock">
+<div class="title">Ephemeral <code>volume</code> example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+metadata:
+    name: mydevfile
+components:
+  - name: mydevfile
+    volume:
+      ephemeral: true
+      size: 200G</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
-<div class="exampleblock">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="literalblock">
 <div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># v2.0
----
-commands:
-  - id: init-project
-    apply:
-      component: tools
-  - id: copy-artifacts
-    exec:
-      component: tools
-      commandLine: "cp files"
-      workingDir: $PROJECTS_ROOT
-  - id: init-cache
-    exec:
-      component: tools
-      commandLine: "init cache"
-      workingDir: /.m2
-  - id: pre-compile-cmd
-    composite:
-      commands:
-        - copy-artifacts
-        - init-cache
-events:
-  preStart:
-    - init-project
-  postStart:
-    - pre-compile-cmd</code></pre>
+<pre>Specifying the size of a `volume` component is dependent on the tools you use and might be subject to the limitations of the tools.</pre>
 </div>
 </div>
+</td>
+</tr>
+</table>
 </div>
-</div>
-<div class="paragraph _additional-resources">
+<div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
-<p>For more information on adding event bindings, see: <a href="https://github.com/devfile/api/issues/32">lifecycle bindings to bind commands</a>.</p>
+<ul>
+<li>
+<p><a href="../api-reference/" class="xref page">API Reference</a></p>
+</li>
+<li>
+<p><a href="../devfile-resources/" class="xref page">Devfile resources</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>
