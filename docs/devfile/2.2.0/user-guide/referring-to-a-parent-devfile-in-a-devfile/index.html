@@ -91,6 +91,9 @@
     <a class="nav-link" href="../adding-exec-commands-to-a-devfile/">Adding exec commands to a devfile</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-apply-commands-to-a-devfile/">Adding apply commands to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-composite-commands-to-a-devfile/">Adding composite commands to a devfile</a>
   </li>
 </ul>
@@ -104,6 +107,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-container-component-to-a-devfile/">Adding a container component</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-a-image-component-to-a-devfile/">Adding an image component</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-volume-component-to-a-devfile/">Adding a volume component</a>
@@ -294,16 +300,17 @@
 <div class="title">Example 1. Parent referred by registry</div>
 <div class="content">
 <div class="paragraph">
-<p>Using the <code>id</code> when published in a registry.</p>
+<p>Using the <code>id</code> when published in a registry. Provide the <code>registryUrl</code> as well as <code>version</code>. <code>version</code> can be either the stack version string, or <code>latest</code>. If no <code>version</code> is provided, the default version for the stack will be used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.2.0
 metadata:
   name: my-project-dev
 parent:
     id: redhat/nodejs
-    registryUrl: https://devfile-registry.io/</code></pre>
+    registryUrl: https://devfile-registry.io/
+    version: 1.2.0</code></pre>
 </div>
 </div>
 </div>
@@ -316,7 +323,7 @@ parent:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.2.0
 metadata:
   name: my-project-dev
 parent:
@@ -333,7 +340,7 @@ parent:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.2.0
 metadata:
   name: my-project-dev
 parent:

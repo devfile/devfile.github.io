@@ -90,6 +90,9 @@
     <a class="nav-link" href="../adding-exec-commands-to-a-devfile/">Adding exec commands to a devfile</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-apply-commands-to-a-devfile/">Adding apply commands to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-composite-commands-to-a-devfile/">Adding composite commands to a devfile</a>
   </li>
 </ul>
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-container-component-to-a-devfile/">Adding a container component</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-a-image-component-to-a-devfile/">Adding an image component</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-volume-component-to-a-devfile/">Adding a volume component</a>
@@ -330,7 +336,10 @@
 <p>Specify the endpoint through the endpoint property with <code>kubernetes</code> or <code>openshift</code> components.</p>
 </li>
 <li>
-<p>Associate <code>kubernetes</code> or <code>openshift</code> components with <code>Apply</code> commands. If you do not associate <code>Apply</code> commands, they are assumed to be applied at start up.</p>
+<p>By default <code>kubernetes</code> or <code>openshift</code> components are not going to be deployed. Specify <code>deployByDefault=true</code> if you want to apply the component at start up.</p>
+</li>
+<li>
+<p>Associate <code>kubernetes</code> or <code>openshift</code> components with <code>Apply</code> commands wth <code>deploy</code> command group kind. If the <code>kubernetes</code> or <code>openshift</code> component uses an image built by an image component defined in the devfile, you can create a composite <code>deploy</code> command to build the image and deploy the Kubernetes or openshift component. For more information on <code>deploy</code> commands, see <a href="../adding-a-command-group-to-a-devfile/" class="xref page">Adding a command group to a devfile</a></p>
 </li>
 </ol>
 </div>

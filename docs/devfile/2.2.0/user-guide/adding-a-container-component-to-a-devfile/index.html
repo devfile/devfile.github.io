@@ -90,6 +90,9 @@
     <a class="nav-link" href="../adding-exec-commands-to-a-devfile/">Adding exec commands to a devfile</a>
   </li>
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-apply-commands-to-a-devfile/">Adding apply commands to a devfile</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-composite-commands-to-a-devfile/">Adding composite commands to a devfile</a>
   </li>
 </ul>
@@ -103,6 +106,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="./">Adding a container component</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../adding-a-image-component-to-a-devfile/">Adding an image component</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../adding-a-volume-component-to-a-devfile/">Adding a volume component</a>
@@ -317,7 +323,7 @@
 <div class="listingblock">
 <div class="title">A minimal <code>container</code> component</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.2.0
 metadata:
     name: mydevfile
 components:
@@ -342,7 +348,7 @@ components:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.1.0
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.2.0
 metadata:
     name: mydevfile
 components:
@@ -356,6 +362,28 @@ components:
 </div>
 <div class="paragraph">
 <p>The sources are mounted on a location stored in the <code>PROJECTS_ROOT</code> environment variable that is made available in the running container of the image. This location defaults to <code>/projects</code>. If <code>sourceMapping</code> is defined in the container, it overrides the <code>PROJECT_ROOT</code> value and mounts the source to the path defined by <code>sourceMapping</code>.</p>
+</div>
+</li>
+<li>
+<p>Specify a volume</p>
+<div class="paragraph">
+<p>For the <code>container</code> component to have a shared volume. You must define a volume component in the devfile, and reference the volume using <code>volumeMount</code> in container component. For more information on volume component, see <a href="../adding-a-volume-component-to-a-devfile/" class="xref page">Adding a volume component to a devfile</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">components:
+  - name: mycontainer
+    container:
+      image: java11-maven:next
+      memoryLimit: 768Mi
+      mountSources: true
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+  - name: m2
+    volume:
+      size: 1Gi</code></pre>
+</div>
 </div>
 </li>
 <li>
