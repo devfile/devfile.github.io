@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Troubleshooting :: Devfile documentation</title>
+    <link rel="canonical" href="https://devfile.io/docs/devfile/2.1.0/user-guide/troubleshooting/">
     <meta name="description" content="Troubleshooting">
     <meta name="keywords" content="migrating, devfile">
     <meta name="generator" content="Antora 3.0.1">
@@ -258,8 +259,8 @@
   <button class="version-menu-toggle" title="Show other versions of page">2.2.0-alpha</button>
   <div class="version-menu">
     <a class="version is-current" href="./">2.2.0-alpha</a>
-    <a class="version is-missing" href="../../../2.1.0/user-guide/">2.1.0</a>
-    <a class="version is-missing" href="../../../2.0.0/user-guide/">2.0.0</a>
+    <a class="version" href="../../../2.1.0/user-guide/troubleshooting/">2.1.0</a>
+    <a class="version" href="../../../2.0.0/user-guide/troubleshooting/">2.0.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/devfile/docs/edit/main/docs/modules/user-guide/pages/troubleshooting.adoc">Edit this Page</a></div>
@@ -313,6 +314,10 @@
 <dt class="hdlist1">Conversion fails with <code>Error provisioning storage: Could not rewrite container volume mounts: volume component 'volume_name' is defined multiple times</code></dt>
 <dd>
 <p>This means the volume defined in the original devfile conflicts with a <code>volumeMount</code> propagated by an editor or a plug-in. Rename the volume in the devfile to be the same as the name of the <code>volumeMount</code> it conflicts with, and proceed with the conversion.</p>
+</dd>
+<dt class="hdlist1">Conversion fails with <code>Unable to resolve theia plugins: ms-vscode/node-debug2/latest is a mandatory plug-in but definition is not found on the plug-in registry. Aborting !</code></dt>
+<dd>
+<p>This means the deprecated <code>ms-vscode/node-debug2/latest</code> plug-in is included in the original devfile, but the newer plug-in registry includes the updated plug-in <code>ms-vscode/js-debug/latest</code>. Replace <code>ms-vscode/node-debug2/latest</code> with <code>ms-vscode/js-debug/latest</code> in the devfile to allow conversion to proceed.</p>
 </dd>
 </dl>
 </div>
